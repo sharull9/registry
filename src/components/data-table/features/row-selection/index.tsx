@@ -25,7 +25,6 @@ export function rowSelectionColumn<TData>(): ColumnDef<TData> {
         <Checkbox
           checked={row.getIsSelected()}
           onCheckedChange={(value) => {
-            console.log(value)
             row.toggleSelected(!!value)
           }}
           aria-label="Select row"

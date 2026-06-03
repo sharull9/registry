@@ -1,3 +1,5 @@
+"use client"
+
 import { useDataTableContext } from "@/components/data-table/core/context"
 import { Button } from "@/components/ui/button"
 import {
@@ -26,7 +28,7 @@ export function DataTablePagination({
   const { table, state } = useDataTableContext()
   const { pagination } = state
   const selectedCount = table.getFilteredSelectedRowModel().rows.length
-  const totalCount = table.getFilteredRowModel().rows.length
+  const totalCount = table.getRowCount()
   const pageCount = Math.max(table.getPageCount(), 1)
   const currentPage = Math.min(pagination.pageIndex + 1, pageCount)
 

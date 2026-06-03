@@ -31,7 +31,7 @@ interface SearchFeatureConfig {
 interface UseDataTableOptions<TData> {
   data: TData[]
   columns: ColumnDef<TData>[]
-  rowCount: number
+  rowCount?: number
   pageSize?: number
   enableRowSelection?: boolean
   enableMultiRowSelection?: boolean
@@ -116,7 +116,7 @@ export function useDataTable<TData>({
     onStateChange?.onPaginationChange?.(value)
   }
 
-  const setSearchValueValue = (value: string) => {
+  const commitSearchValue = (value: string) => {
     if (state?.searchValue === undefined) setInternalSearchValue(value)
     onStateChange?.onSearchValueChange?.(value)
   }
@@ -150,7 +150,7 @@ export function useDataTable<TData>({
   }
 
   const updateSearchValue = (value: string) => {
-    setSearchValueValue(value)
+    commitSearchValue(value)
     setPaginationValue({ ...pagination, pageIndex: 0 })
   }
 
@@ -194,8 +194,8 @@ export function useDataTable<TData>({
     },
     enableRowSelection,
     enableMultiRowSelection,
-    manualPagination: true,
-    rowCount: rowCount,
+    manualPagination: rowCount !== undefined,
+    rowCount,
     onSortingChange: updateSorting,
     onColumnVisibilityChange: updateColumnVisibility,
     onRowSelectionChange: updateRowSelection,

@@ -1,5 +1,6 @@
 "use client"
 
+import type { ExtraAction } from "@/components/data-table/core/types"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -10,14 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import type { Row } from "@tanstack/react-table"
 import { MoreHorizontal, Pencil, Trash2 } from "lucide-react"
-
-interface ExtraAction<TData> {
-  label: string
-  icon?: React.ReactNode
-  onClick: (row: Row<TData>) => void
-  destructive?: boolean
-  disabled?: boolean
-}
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -55,20 +48,6 @@ export function DataTableRowActions<TData>({
             Edit
           </DropdownMenuItem>
         )}
-        {onEdit && hasExtras && <DropdownMenuSeparator />}
-        {hasExtras &&
-          extraActions.map((action) => (
-            <DropdownMenuItem
-              key={action.label}
-              onClick={() => action.onClick(row)}
-              className={action.destructive ? "text-destructive focus:text-destructive" : undefined}
-              disabled={action.disabled || undefined}
-            >
-              {action.icon && <span className="size-3.5 text-muted-foreground">{action.icon}</span>}
-              {action.label}
-            </DropdownMenuItem>
-          ))}
-        {onDelete && (onEdit || hasExtras) && <DropdownMenuSeparator />}
         {onDelete && (
           <DropdownMenuItem
             onClick={() => onDelete(row)}
@@ -79,6 +58,19 @@ export function DataTableRowActions<TData>({
             Delete
           </DropdownMenuItem>
         )}
+        {(onEdit || onDelete) && hasExtras && <DropdownMenuSeparator />}
+        {hasExtras &&
+          extraActions.map((action) => (
+            <DropdownMenuItem
+              key={action.label}
+              onClick={() => action.onClick(row)}
+              className={action.destructive ? "text-destructive focus:text-destructive" : undefined}
+              disabled={action.disabled}
+            >
+              {action.icon && <span className="size-3.5 text-muted-foreground">{action.icon}</span>}
+              {action.label}
+            </DropdownMenuItem>
+          ))}
       </DropdownMenuContent>
     </DropdownMenu>
   )
