@@ -3,7 +3,7 @@
   "items": [
     {
       "name": "search-bar",
-      "type": "registry:item",
+      "type": "registry:component",
       "files": [
         {
           "path": "src/components/search-bar.tsx",
@@ -15,14 +15,38 @@
     },
     {
       "name": "password-input",
-      "type": "registry:item",
+      "type": "registry:component",
       "files": [
         {
           "path": "src/components/password-input.tsx",
           "type": "registry:file",
           "target": "~/src/components/password-input.tsx",
-          "registryDependencies": ["input-group", "lucide-react"],
-          "dependencies": ["@radix-ui/react-use-controllable-state"]
+          "registryDependencies": ["input-group"],
+          "dependencies": ["@radix-ui/react-use-controllable-state", "lucide-react"]
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:component",
+      "files": [
+        {
+          "path": "src/components/form.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/form.tsx",
+          "registryDependencies": ["label", "field"],
+          "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"]
+        }
+      ]
+    },
+    {
+      "name": "shader-lines",
+      "type": "registry:component",
+      "files": [
+        {
+          "path": "src/components/shader-lines.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/shader-lines.tsx"
         }
       ]
     }

@@ -12,6 +12,81 @@
           "dependencies": ["clsx", "tailwind-merge"]
         }
       ]
+    },
+    {
+      "name": "module-auth-example",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/modules/auth/ui/components/auth-wrapper.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/components/auth-wrapper.tsx",
+          "registryDependencies": ["sharull9/registry/shader-lines"]
+        },
+        {
+          "path": "src/modules/auth/ui/layouts/auth-layout.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/layouts/auth-layout.tsx"
+        },
+        {
+          "path": "src/modules/auth/ui/views/sign-in-view.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/views/sign-in-view.tsx",
+          "registryDependencies": [
+            "sharull9/registry/password-input",
+            "sharull9/registry/form",
+            "sharull9/registry/util",
+            "button",
+            "checkbox",
+            "input",
+            "label",
+            "spinner"
+          ],
+          "dependencies": ["@hookform/resolvers", "react-hook-form", "zod"]
+        },
+        {
+          "path": "src/modules/auth/ui/views/sign-up-view.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/views/sign-up-view.tsx",
+          "registryDependencies": [
+            "sharull9/registry/password-input",
+            "sharull9/registry/form",
+            "sharull9/registry/util",
+            "input",
+            "button",
+            "spinner"
+          ],
+          "dependencies": ["@hookform/resolvers", "react-hook-form", "zod"]
+        },
+        {
+          "path": "src/modules/auth/ui/views/verify-otp-view.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/views/verify-otp-view.tsx",
+          "registryDependencies": [
+            "sharull9/registry/password-input",
+            "sharull9/registry/form",
+            "sharull9/registry/util",
+            "input",
+            "button",
+            "spinner"
+          ],
+          "dependencies": ["nuqs"]
+        },
+        {
+          "path": "src/modules/auth/ui/views/forgot-password-view.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/views/forgot-password-view.tsx",
+          "registryDependencies": [
+            "sharull9/registry/password-input",
+            "sharull9/registry/form",
+            "sharull9/registry/util",
+            "input",
+            "button",
+            "spinner"
+          ],
+          "dependencies": ["@hookform/resolvers", "react-hook-form", "zod", "nuqs"]
+        }
+      ]
     }
   ]
 }
