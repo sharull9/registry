@@ -49,6 +49,19 @@
           "target": "~/src/components/shader-lines.tsx"
         }
       ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:component",
+      "registryDependencies": ["spinner", "popover", "empty", "command", "button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/combobox.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/combobox.tsx"
+        }
+      ]
     }
   ]
 }

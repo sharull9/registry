@@ -10,8 +10,8 @@ Job Listing Portal for Infoware built with Next.js 16 App Router, React 19, and 
 
 - Package manager: `pnpm`
 - Main commands:
-  - `pnpm check:types` - TypeScript type check
-  - `pnpm typegen` - Run Next.js type generation
+  - `pnpm types:check` - TypeScript type check
+  - `pnpm types:generate` - Run Next.js type generation
 
 ## Task Guides
 
