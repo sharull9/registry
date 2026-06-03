@@ -5,7 +5,7 @@
       "name": "search-bar",
       "type": "registry:component",
       "category": "Dashboard",
-      "tags": ["search", "form", "input"],
+      "tags": ["search", "form", "input", "ui"],
       "files": [
         {
           "path": "src/components/search-bar.tsx",
@@ -19,7 +19,7 @@
       "name": "password-input",
       "type": "registry:component",
       "category": "Form",
-      "tags": ["input", "password", "form", "security"],
+      "tags": ["input", "password", "form", "security", "ui"],
       "files": [
         {
           "path": "src/components/password-input.tsx",
@@ -34,7 +34,7 @@
       "name": "form",
       "type": "registry:component",
       "category": "Form",
-      "tags": ["form", "validation", "input"],
+      "tags": ["form", "validation", "input", "ui"],
       "files": [
         {
           "path": "src/components/form.tsx",
@@ -49,7 +49,7 @@
       "name": "shader-lines",
       "type": "registry:component",
       "category": "Graphics",
-      "tags": ["graphics", "animation", "shader"],
+      "tags": ["graphics", "animation", "shader", "ui"],
       "files": [
         {
           "path": "src/components/shader-lines.tsx",
@@ -62,7 +62,7 @@
       "name": "combobox",
       "type": "registry:component",
       "category": "Input",
-      "tags": ["select", "dropdown", "input"],
+      "tags": ["select", "dropdown", "input", "ui"],
       "registryDependencies": ["spinner", "popover", "empty", "command", "button"],
       "dependencies": ["lucide-react"],
       "files": [

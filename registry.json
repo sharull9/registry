@@ -6,7 +6,8 @@
     "registry/agent/registry.json",
     "registry/config/registry.json",
     "registry/provider/registry.json",
-    "registry/misc/registry.json"
+    "registry/misc/registry.json",
+    "registry/component/registry.json"
   ],
   "items": [
     {
