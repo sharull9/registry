@@ -3,24 +3,24 @@
 import { RegistryCard } from "@/components/registry-browser"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import type { RegistryItem } from "@/lib/registry"
-import { SearchIcon } from "lucide-react"
-import { useQueryState } from "nuqs"
+import { SearchIcon, XIcon } from "lucide-react"
+import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs"
 import { useMemo } from "react"
 
 const CATEGORIES = ["all", "agent", "config", "provider", "misc"] as const
-type Category = (typeof CATEGORIES)[number]
 
-const SIDEBAR_ITEMS: { key: Category; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "agent", label: "Agents" },
-  { key: "config", label: "Configs" },
-  { key: "provider", label: "Providers" },
-  { key: "misc", label: "Misc" },
-]
+const CATEGORY_LABELS: Record<string, string> = {
+  all: "All",
+  agent: "Agents",
+  config: "Configs",
+  provider: "Providers",
+  misc: "Misc",
+}
 
 export function SearchBrowser({ items }: { items: RegistryItem[] }) {
   const [search, setSearch] = useQueryState("q", { defaultValue: "" })
   const [category, setCategory] = useQueryState("cat", { defaultValue: "all" })
+  const [activeTags, setActiveTags] = useQueryState("tags", parseAsArrayOf(parseAsString).withDefault([]))
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { all: items.length }
@@ -30,32 +30,71 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
     return counts
   }, [items])
 
+  const allTags = useMemo(() => {
+    const tagCounts = new Map<string, number>()
+    for (const item of items) {
+      for (const tag of item.tags) {
+        tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1)
+      }
+    }
+    return Array.from(tagCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .map(([tag, count]) => ({ tag, count }))
+  }, [items])
+
   const filtered = useMemo(() => {
     return items.filter((item) => {
       const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase())
       const matchesCategory = category === "all" || item.category === category
-      return matchesSearch && matchesCategory
+      const matchesTags = activeTags.length === 0 || activeTags.some((t) => item.tags.includes(t))
+      return matchesSearch && matchesCategory && matchesTags
     })
-  }, [items, search, category])
+  }, [items, search, category, activeTags])
 
   function handleCategoryChange(cat: string) {
     setCategory(cat === "all" ? null : cat)
+    setActiveTags([])
   }
+
+  function handleTagToggle(tag: string) {
+    setActiveTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    )
+  }
+
+  function clearFilters() {
+    setSearch(null)
+    setCategory(null)
+    setActiveTags([])
+  }
+
+  const hasActiveFilters = search || (category && category !== "all") || activeTags.length > 0
 
   return (
     <div className="relative min-h-screen">
-      {/* Background orbs */}
+      {/* Background orb */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 left-1/4 size-[500px] rounded-full bg-primary/6 blur-[120px]" />
       </div>
 
       <div className="relative container mx-auto max-w-6xl px-4 py-10">
         {/* Page header */}
-        <div className="mb-8">
-          <h1 className="mb-1 text-2xl font-bold tracking-tight">Browse Registry</h1>
-          <p className="text-sm text-muted-foreground">
-            {items.length} items available — filter by category or search by name
-          </p>
+        <div className="mb-8 flex items-start justify-between gap-4">
+          <div>
+            <h1 className="mb-1 text-2xl font-bold tracking-tight">Browse Registry</h1>
+            <p className="text-sm text-muted-foreground">
+              {items.length} items — filter by category or tag
+            </p>
+          </div>
+          {hasActiveFilters && (
+            <button
+              onClick={clearFilters}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-border hover:text-foreground"
+            >
+              <XIcon className="size-3.5" />
+              Clear filters
+            </button>
+          )}
         </div>
 
         {/* Search */}
@@ -73,86 +112,147 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
         </InputGroup>
 
         <div className="flex gap-8">
-          {/* Sidebar */}
-          <aside className="hidden w-48 shrink-0 lg:block">
-            <div className="sticky top-24 space-y-1">
-              <p className="mb-3 px-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Categories
-              </p>
-              {SIDEBAR_ITEMS.map(({ key, label }) => {
-                const isActive = (category ?? "all") === key
-                return (
-                  <button
-                    key={key}
-                    onClick={() => handleCategoryChange(key)}
-                    className={[
-                      "flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-sm transition-all",
-                      isActive
-                        ? "bg-primary text-primary-foreground font-medium"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                    ].join(" ")}
-                  >
-                    <span>{label}</span>
-                    <span
-                      className={[
-                        "tabular-nums text-xs",
-                        isActive ? "text-primary-foreground/70" : "text-muted-foreground/60",
-                      ].join(" ")}
-                    >
-                      {categoryCounts[key] ?? 0}
-                    </span>
-                  </button>
-                )
-              })}
+          {/* Sidebar — desktop */}
+          <aside className="hidden w-52 shrink-0 lg:block">
+            <div className="sticky top-24 space-y-6">
+              {/* Categories */}
+              <div>
+                <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  Categories
+                </p>
+                <div className="space-y-0.5">
+                  {CATEGORIES.map((cat) => {
+                    const isActive = (category ?? "all") === cat
+                    return (
+                      <button
+                        key={cat}
+                        onClick={() => handleCategoryChange(cat)}
+                        className={[
+                          "flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-sm transition-all",
+                          isActive
+                            ? "bg-primary text-primary-foreground font-medium"
+                            : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                        ].join(" ")}
+                      >
+                        <span>{CATEGORY_LABELS[cat]}</span>
+                        <span
+                          className={[
+                            "tabular-nums text-xs",
+                            isActive ? "text-primary-foreground/70" : "text-muted-foreground/60",
+                          ].join(" ")}
+                        >
+                          {categoryCounts[cat] ?? 0}
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
 
-              {/* Placeholder for future tags */}
-              <div className="mt-6 border-t border-border/50 pt-4">
-                <p className="px-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground/40">
+              {/* Tags */}
+              <div>
+                <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                   Tags
                 </p>
-                <p className="mt-2 px-2 text-xs text-muted-foreground/40">Coming soon</p>
+                <div className="space-y-0.5">
+                  {allTags.map(({ tag, count }) => {
+                    const isActive = activeTags.includes(tag)
+                    return (
+                      <button
+                        key={tag}
+                        onClick={() => handleTagToggle(tag)}
+                        className={[
+                          "flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-sm transition-all",
+                          isActive
+                            ? "bg-primary text-primary-foreground font-medium"
+                            : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                        ].join(" ")}
+                      >
+                        <span># {tag}</span>
+                        <span
+                          className={[
+                            "tabular-nums text-xs",
+                            isActive ? "text-primary-foreground/70" : "text-muted-foreground/60",
+                          ].join(" ")}
+                        >
+                          {count}
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </aside>
 
-          {/* Mobile category pills */}
-          <div className="lg:hidden -mx-4 mb-6 flex gap-2 overflow-x-auto px-4 pb-1">
-            {SIDEBAR_ITEMS.map(({ key, label }) => {
-              const isActive = (category ?? "all") === key
-              return (
-                <button
-                  key={key}
-                  onClick={() => handleCategoryChange(key)}
-                  className={[
-                    "inline-flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-medium transition-all",
-                    isActive
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border/60 bg-card/60 text-muted-foreground",
-                  ].join(" ")}
-                >
-                  {label}
-                  <span className="tabular-nums text-xs opacity-70">
-                    {categoryCounts[key] ?? 0}
-                  </span>
-                </button>
-              )
-            })}
+          {/* Mobile filters */}
+          <div className="w-full lg:hidden">
+            <div className="-mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1">
+              {CATEGORIES.map((cat) => {
+                const isActive = (category ?? "all") === cat
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => handleCategoryChange(cat)}
+                    className={[
+                      "inline-flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-medium transition-all",
+                      isActive
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border/60 bg-card/60 text-muted-foreground",
+                    ].join(" ")}
+                  >
+                    {CATEGORY_LABELS[cat]}
+                    <span className="tabular-nums text-xs opacity-70">
+                      {categoryCounts[cat] ?? 0}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="-mx-4 mb-6 flex gap-2 overflow-x-auto px-4 pb-1">
+              {allTags.map(({ tag }) => {
+                const isActive = activeTags.includes(tag)
+                return (
+                  <button
+                    key={tag}
+                    onClick={() => handleTagToggle(tag)}
+                    className={[
+                      "inline-flex shrink-0 items-center rounded-full border px-2.5 py-1 text-xs font-medium transition-all",
+                      isActive
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border/60 bg-card/60 text-muted-foreground",
+                    ].join(" ")}
+                  >
+                    # {tag}
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
           {/* Results */}
           <div className="min-w-0 flex-1">
-            {/* Result count */}
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-4 flex flex-wrap items-center gap-2">
               <p className="text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">{filtered.length}</span> result
                 {filtered.length !== 1 ? "s" : ""}
-                {search && (
-                  <>
-                    {" "}
-                    for <span className="font-medium text-foreground">"{search}"</span>
-                  </>
-                )}
               </p>
+              {activeTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-muted/60 px-2 py-0.5 text-xs text-muted-foreground"
+                >
+                  # {tag}
+                  <button
+                    onClick={() => handleTagToggle(tag)}
+                    className="hover:text-foreground"
+                    aria-label={`Remove tag ${tag}`}
+                  >
+                    <XIcon className="size-3" />
+                  </button>
+                </span>
+              ))}
             </div>
 
             {filtered.length === 0 ? (
@@ -160,7 +260,7 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
                 <SearchIcon className="size-8 text-muted-foreground/40" />
                 <p className="font-medium text-muted-foreground">No results found</p>
                 <p className="text-sm text-muted-foreground/60">
-                  Try adjusting your search or selecting a different category
+                  Try adjusting your search, category, or tag
                 </p>
               </div>
             ) : (

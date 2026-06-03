@@ -4,6 +4,8 @@
     {
       "name": "providers",
       "type": "registry:item",
+      "category": "provider",
+      "tags": ["bundle", "provider"],
       "registryDependencies": [
         "sharull9/registry/nuqs-provider",
         "sharull9/registry/query-provider",
@@ -21,6 +23,8 @@
     {
       "name": "nuqs-provider",
       "type": "registry:item",
+      "category": "provider",
+      "tags": ["nuqs", "url-state", "provider"],
       "files": [
         {
           "path": "src/providers/nuqs.provider.tsx",
@@ -33,6 +37,8 @@
     {
       "name": "query-provider",
       "type": "registry:item",
+      "category": "provider",
+      "tags": ["react-query", "data-fetching", "provider"],
       "files": [
         {
           "path": "src/providers/query.provider.tsx",
@@ -51,6 +57,8 @@
     {
       "name": "theme-provider",
       "type": "registry:item",
+      "category": "provider",
+      "tags": ["theme", "dark-mode", "provider"],
       "files": [
         {
           "path": "src/providers/theme.provider.tsx",
@@ -63,6 +71,8 @@
     {
       "name": "ui-provider",
       "type": "registry:item",
+      "category": "provider",
+      "tags": ["ui", "direction", "tooltip", "provider"],
       "files": [
         {
           "path": "src/providers/ui.provider.tsx",

@@ -4,6 +4,8 @@
     {
       "name": "util",
       "type": "registry:item",
+      "category": "misc",
+      "tags": ["utils", "helpers", "tailwind"],
       "files": [
         {
           "path": "src/lib/utils.ts",
@@ -16,6 +18,8 @@
     {
       "name": "module-auth-example",
       "type": "registry:item",
+      "category": "misc",
+      "tags": ["auth", "module", "example", "forms"],
       "files": [
         {
           "path": "src/modules/auth/ui/components/auth-wrapper.tsx",

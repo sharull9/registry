@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button"
 import { MoonIcon, SearchIcon, SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useTheme } from "next-themes"
 
 export function SiteHeader() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -14,10 +14,10 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
+          <Link href="/" className="flex items-center text-sm transition-opacity hover:opacity-80">
             <span className="font-semibold tracking-tight">sharull9</span>
-            <span className="text-border">/</span>
-            <span className="font-mono text-sm text-muted-foreground">registry</span>
+            <span>/</span>
+            <span className="font-mono text-muted-foreground">registry</span>
           </Link>
 
           <nav className="hidden items-center gap-1 sm:flex">

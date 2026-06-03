@@ -4,6 +4,8 @@
     {
       "name": "agent-docs",
       "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "ai", "bundle"],
       "registryDependencies": [
         "sharull9/registry/agent-md",
         "sharull9/registry/agent-docs-api",
@@ -16,6 +18,8 @@
     {
       "name": "agent-md",
       "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "ai", "markdown"],
       "files": [
         {
           "path": "AGENTS.md",
@@ -32,6 +36,8 @@
     {
       "name": "agent-docs-api",
       "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "api"],
       "files": [
         {
           "path": "docs/agents/api.md",
@@ -43,6 +49,8 @@
     {
       "name": "agent-docs-architecture",
       "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "architecture"],
       "files": [
         {
           "path": "docs/agents/architecture.md",
@@ -54,6 +62,8 @@
     {
       "name": "agent-docs-forms-and-state",
       "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "forms", "state"],
       "files": [
         {
           "path": "docs/agents/forms-and-state.md",
@@ -65,6 +75,8 @@
     {
       "name": "agent-docs-routing",
       "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "routing"],
       "files": [
         {
           "path": "docs/agents/routing.md",
@@ -76,6 +88,8 @@
     {
       "name": "agent-docs-source-of-truth",
       "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "source-of-truth"],
       "files": [
         {
           "path": "docs/agents/source-of-truth.md",
@@ -87,6 +101,8 @@
     {
       "name": "agent-docs-ui",
       "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "ui"],
       "files": [
         {
           "path": "docs/agents/ui.md",

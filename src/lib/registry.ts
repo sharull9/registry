@@ -5,6 +5,7 @@ export type RegistryItem = {
   name: string
   type: string
   category: string
+  tags: string[]
   addCommandArgument: string
 }
 
@@ -20,13 +21,14 @@ export async function getRegistryItems(): Promise<RegistryItem[]> {
   const items: RegistryItem[] = []
 
   for (const file of REGISTRY_FILES) {
-    const category = file.split("/")[0]
+    const folderName = file.split("/")[0]
     const json = JSON.parse(await fs.readFile(path.join(registryRoot, file), "utf8"))
     for (const item of json.items ?? []) {
       items.push({
         name: item.name,
         type: item.type ?? "registry:item",
-        category,
+        category: item.category ?? folderName,
+        tags: Array.isArray(item.tags) ? item.tags : [],
         addCommandArgument: `sharull9/registry/${item.name}`,
       })
     }

@@ -4,6 +4,8 @@
     {
       "name": "config",
       "type": "registry:item",
+      "category": "config",
+      "tags": ["bundle", "config"],
       "registryDependencies": [
         "sharull9/registry/config-prettier",
         "sharull9/registry/config-eslint"
@@ -12,6 +14,8 @@
     {
       "name": "config-prettier",
       "type": "registry:item",
+      "category": "config",
+      "tags": ["prettier", "formatting", "config"],
       "files": [
         {
           "path": ".prettierrc",
@@ -29,6 +33,8 @@
     {
       "name": "config-eslint",
       "type": "registry:item",
+      "category": "config",
+      "tags": ["eslint", "linting", "config"],
       "files": [
         {
           "path": "eslint.config.mjs",

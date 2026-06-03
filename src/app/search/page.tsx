@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/site-header"
 import { getRegistryItems } from "@/lib/registry"
 
 export const metadata = {
-  title: "Browse — Sharull Registry",
+  title: "Browse | sharull9/registry",
   description: "Search and filter all registry items by category.",
 }
 
