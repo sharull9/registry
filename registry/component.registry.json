@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "search-bar",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/components/search-bar.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/search-bar.tsx",
+          "registryDependencies": ["button", "dialog", "input", "scroll-area", "lucide-react"]
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/components/password-input.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/password-input.tsx",
+          "registryDependencies": ["input-group", "lucide-react"],
+          "dependencies": ["@radix-ui/react-use-controllable-state"]
+        }
+      ]
+    }
+  ]
+}

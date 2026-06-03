@@ -1,0 +1,99 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "agent-docs",
+      "type": "registry:item",
+      "registryDependencies": [
+        "sharull9/registry/agent-md",
+        "sharull9/registry/agent-docs-api",
+        "sharull9/registry/agent-docs-architecture",
+        "sharull9/registry/agent-docs-forms-and-state",
+        "sharull9/registry/agent-docs-routing",
+        "sharull9/registry/agent-docs-source-of-truth"
+      ]
+    },
+    {
+      "name": "agent-md",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "type": "registry:file",
+          "target": "~/AGENTS.md"
+        },
+        {
+          "path": "CLAUDE.md",
+          "type": "registry:file",
+          "target": "~/CLAUDE.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-api",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "docs/agents/api.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/api.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-architecture",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "docs/agents/architecture.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/architecture.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-forms-and-state",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "docs/agents/forms-and-state.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/forms-and-state.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-routing",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "docs/agents/routing.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/routing.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-source-of-truth",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "docs/agents/source-of-truth.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/source-of-truth.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-ui",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "docs/agents/ui.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/ui.md"
+        }
+      ]
+    }
+  ]
+}

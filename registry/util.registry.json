@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "util",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/utils.ts",
+          "dependencies": ["clsx", "tailwind-merge"]
+        }
+      ]
+    }
+  ]
+}

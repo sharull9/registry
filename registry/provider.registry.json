@@ -1,0 +1,77 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "providers",
+      "type": "registry:item",
+      "registryDependencies": [
+        "sharull9/registry/nuqs-provider",
+        "sharull9/registry/query-provider",
+        "sharull9/registry/theme-provider",
+        "sharull9/registry/ui-provider"
+      ],
+      "files": [
+        {
+          "path": "src/providers/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "nuqs-provider",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/providers/nuqs.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/nuqs.provider.tsx",
+          "dependencies": ["nuqs"]
+        }
+      ]
+    },
+    {
+      "name": "query-provider",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/providers/query.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/query.provider.tsx",
+          "dependencies": ["@tanstack/react-query"]
+        },
+        {
+          "path": "src/lib/query.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/query.ts",
+          "dependencies": ["@tanstack/react-query", "sonner"]
+        }
+      ]
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/providers/theme.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/theme.provider.tsx",
+          "dependencies": ["@tanstack/react-hotkeys", "next-themes"]
+        }
+      ]
+    },
+    {
+      "name": "ui-provider",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/providers/ui.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/ui.provider.tsx",
+          "dependencies": ["@tanstack/react-hotkeys", "next-themes"],
+          "registryDependencies": ["direction", "tooltip"]
+        }
+      ]
+    }
+  ]
+}
