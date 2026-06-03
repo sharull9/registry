@@ -4,6 +4,15 @@
   "homepage": "https://sharull.vercel.app",
   "items": [
     {
+      "name": "project-setup",
+      "type": "registry:item",
+      "registryDependencies": [
+        "sharull9/registry/agent-docs",
+        "sharull9/registry/providers",
+        "sharull9/registry/prettier"
+      ]
+    },
+    {
       "name": "agent-docs",
       "type": "registry:item",
       "files": [
@@ -36,6 +45,60 @@
           "path": "docs/agents/ui.md",
           "type": "registry:file",
           "target": "~/docs/agents/ui.md"
+        }
+      ]
+    },
+    {
+      "name": "providers",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "src/lib/query.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/query.ts",
+          "dependencies": ["@tanstack/react-query", "sonner"]
+        },
+        {
+          "path": "src/providers/nuqs.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/nuqs.provider.tsx",
+          "dependencies": ["nuqs"]
+        },
+        {
+          "path": "src/providers/query.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/query.provider.tsx",
+          "dependencies": ["@tanstack/react-query"]
+        },
+        {
+          "path": "src/providers/theme.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/theme.provider.tsx",
+          "dependencies": ["@tanstack/react-hotkeys", "next-themes"]
+        },
+        {
+          "path": "src/providers/ui.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/ui.provider.tsx",
+          "dependencies": ["@tanstack/react-hotkeys", "next-themes"],
+          "registryDependencies": ["direction", "tooltip"]
+        }
+      ]
+    },
+    {
+      "name": "prettier",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": ".prettierrc",
+          "type": "registry:file",
+          "target": "~/prettierrc",
+          "devDependencies": ["prettier", "prettier-plugin-tailwindcss"]
+        },
+        {
+          "path": ".prettierignore",
+          "type": "registry:file",
+          "target": "~/.prettierignore"
         }
       ]
     }
