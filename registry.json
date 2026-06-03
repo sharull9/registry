@@ -3,13 +3,38 @@
   "name": "registry",
   "items": [
     {
-      "name": "agent:docs",
+      "name": "agent-docs",
       "type": "registry:item",
       "files": [
         {
-          "path": "docs/conventions.md",
-          "type": "registry:folder",
-          "target": "~/docs/agents/"
+          "path": "docs/agents/api.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/api.md"
+        },
+        {
+          "path": "docs/agents/architecture.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/architecture.md"
+        },
+        {
+          "path": "docs/agents/forms-and-state.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/forms-and-state.md"
+        },
+        {
+          "path": "docs/agents/routing.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/routing.md"
+        },
+        {
+          "path": "docs/agents/source-of-truth.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/source-of-truth.md"
+        },
+        {
+          "path": "docs/agents/ui.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/ui.md"
         }
       ]
     }
