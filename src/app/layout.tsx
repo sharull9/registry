@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Sharull Registry",
+  title: "sharull9/registry",
   description: "Browse and install production-ready components, providers, configs, and agents.",
 }
 
