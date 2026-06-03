@@ -7,9 +7,12 @@ import type {
 import {
   type ColumnDef,
   type ColumnFiltersState,
+  type ColumnPinningState,
+  type ExpandedState,
   type FilterFn,
   functionalUpdate,
   getCoreRowModel,
+  getExpandedRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
@@ -35,6 +38,7 @@ interface UseDataTableOptions<TData> {
   pageSize?: number
   enableRowSelection?: boolean
   enableMultiRowSelection?: boolean
+  enableRowExpansion?: boolean
   initialColumnVisibility?: VisibilityState
   search?: SearchFeatureConfig
   state?: DataTableControlledState
@@ -72,6 +76,7 @@ export function useDataTable<TData>({
   pageSize = 10,
   enableRowSelection = false,
   enableMultiRowSelection = true,
+  enableRowExpansion = false,
   initialColumnVisibility = {},
   search,
   state,
@@ -83,7 +88,9 @@ export function useDataTable<TData>({
   const [internalSorting, setInternalSorting] = useState<SortingState>([])
   const [internalColumnVisibility, setInternalColumnVisibility] =
     useState<VisibilityState>(initialColumnVisibility)
+  const [internalColumnPinning, setInternalColumnPinning] = useState<ColumnPinningState>({})
   const [internalRowSelection, setInternalRowSelection] = useState<RowSelectionState>({})
+  const [internalExpanded, setInternalExpanded] = useState<ExpandedState>({})
   const [internalPagination, setInternalPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize,
@@ -92,7 +99,9 @@ export function useDataTable<TData>({
 
   const sorting = state?.sorting ?? internalSorting
   const columnVisibility = state?.columnVisibility ?? internalColumnVisibility
+  const columnPinning = state?.columnPinning ?? internalColumnPinning
   const rowSelection = state?.rowSelection ?? internalRowSelection
+  const expanded = state?.expanded ?? internalExpanded
   const pagination = state?.pagination ?? internalPagination
   const searchValue = state?.searchValue ?? internalSearchValue
 
@@ -106,9 +115,19 @@ export function useDataTable<TData>({
     onStateChange?.onColumnVisibilityChange?.(value)
   }
 
+  const setColumnPinningValue = (value: ColumnPinningState) => {
+    if (state?.columnPinning === undefined) setInternalColumnPinning(value)
+    onStateChange?.onColumnPinningChange?.(value)
+  }
+
   const setRowSelectionValue = (value: RowSelectionState) => {
     if (state?.rowSelection === undefined) setInternalRowSelection(value)
     onStateChange?.onRowSelectionChange?.(value)
+  }
+
+  const setExpandedValue = (value: ExpandedState) => {
+    if (state?.expanded === undefined) setInternalExpanded(value)
+    onStateChange?.onExpandedChange?.(value)
   }
 
   const setPaginationValue = (value: PaginationState) => {
@@ -141,8 +160,16 @@ export function useDataTable<TData>({
     setColumnVisibilityValue(functionalUpdate(updater, columnVisibility))
   }
 
+  const updateColumnPinning: OnChangeFn<ColumnPinningState> = (updater) => {
+    setColumnPinningValue(functionalUpdate(updater, columnPinning))
+  }
+
   const updateRowSelection: OnChangeFn<RowSelectionState> = (updater) => {
     setRowSelectionValue(functionalUpdate(updater, rowSelection))
+  }
+
+  const updateExpanded: OnChangeFn<ExpandedState> = (updater) => {
+    setExpandedValue(functionalUpdate(updater, expanded))
   }
 
   const updatePagination: OnChangeFn<PaginationState> = (updater) => {
@@ -160,7 +187,9 @@ export function useDataTable<TData>({
   const tableState = {
     sorting,
     columnVisibility,
+    columnPinning,
     rowSelection,
+    expanded,
     pagination,
     globalFilter,
   }
@@ -188,7 +217,9 @@ export function useDataTable<TData>({
       sorting: tableState.sorting,
       columnFilters,
       columnVisibility: tableState.columnVisibility,
+      columnPinning: tableState.columnPinning,
       rowSelection: tableState.rowSelection,
+      expanded: tableState.expanded,
       pagination: tableState.pagination,
       globalFilter: tableState.globalFilter,
     },
@@ -198,7 +229,9 @@ export function useDataTable<TData>({
     rowCount,
     onSortingChange: updateSorting,
     onColumnVisibilityChange: updateColumnVisibility,
+    onColumnPinningChange: updateColumnPinning,
     onRowSelectionChange: updateRowSelection,
+    onExpandedChange: updateExpanded,
     onPaginationChange: updatePagination,
     onGlobalFilterChange: (updater) =>
       updateSearchValue(String(functionalUpdate(updater, globalFilter))),
@@ -206,6 +239,7 @@ export function useDataTable<TData>({
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getExpandedRowModel: enableRowExpansion ? getExpandedRowModel() : undefined,
     getColumnCanGlobalFilter: () => true,
     globalFilterFn,
   })

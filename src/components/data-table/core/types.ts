@@ -1,6 +1,8 @@
 import type { buttonVariants } from "@/components/ui/button"
 import type {
   ColumnDef,
+  ColumnPinningState,
+  ExpandedState,
   PaginationState,
   Row,
   RowSelectionState,
@@ -12,17 +14,21 @@ import type { VariantProps } from "class-variance-authority"
 export interface DataTableControlledState {
   sorting?: SortingState
   columnVisibility?: VisibilityState
+  columnPinning?: ColumnPinningState
   rowSelection?: RowSelectionState
   pagination?: PaginationState
   searchValue?: string
+  expanded?: ExpandedState
 }
 
 export interface DataTableStateChangeHandlers {
   onSortingChange?: (value: SortingState) => void
   onColumnVisibilityChange?: (value: VisibilityState) => void
+  onColumnPinningChange?: (value: ColumnPinningState) => void
   onRowSelectionChange?: (value: RowSelectionState) => void
   onPaginationChange?: (value: PaginationState) => void
   onSearchValueChange?: (value: string) => void
+  onExpandedChange?: (value: ExpandedState) => void
 }
 
 export interface ExtraAction<TData> {
@@ -64,6 +70,11 @@ export interface DataTableProps<TData> {
     enabled?: boolean
     mode?: "single" | "multi"
   }
+  /** Adds an expand toggle column and renders a sub-row below each expanded row. */
+  rowExpansion?: {
+    enabled?: boolean
+    renderSubRow: (row: Row<TData>) => React.ReactNode
+  }
   pageSize?: number
   initialColumnVisibility?: VisibilityState
   state?: DataTableControlledState
@@ -76,4 +87,6 @@ export interface DataTableContentProps {
   isLoading?: boolean
   loadingRowCount?: number
   emptyState?: React.ReactNode
+  onRowClick?: (row: Row<unknown>) => void
+  renderSubRow?: (row: Row<unknown>) => React.ReactNode
 }
