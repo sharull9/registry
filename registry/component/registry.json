@@ -4,6 +4,8 @@
     {
       "name": "search-bar",
       "type": "registry:component",
+      "category": "Dashboard",
+      "tags": ["search", "form", "input"],
       "files": [
         {
           "path": "src/components/search-bar.tsx",
@@ -16,6 +18,8 @@
     {
       "name": "password-input",
       "type": "registry:component",
+      "category": "Form",
+      "tags": ["input", "password", "form", "security"],
       "files": [
         {
           "path": "src/components/password-input.tsx",
@@ -29,6 +33,8 @@
     {
       "name": "form",
       "type": "registry:component",
+      "category": "Form",
+      "tags": ["form", "validation", "input"],
       "files": [
         {
           "path": "src/components/form.tsx",
@@ -42,6 +48,8 @@
     {
       "name": "shader-lines",
       "type": "registry:component",
+      "category": "Graphics",
+      "tags": ["graphics", "animation", "shader"],
       "files": [
         {
           "path": "src/components/shader-lines.tsx",
@@ -53,6 +61,8 @@
     {
       "name": "combobox",
       "type": "registry:component",
+      "category": "Input",
+      "tags": ["select", "dropdown", "input"],
       "registryDependencies": ["spinner", "popover", "empty", "command", "button"],
       "dependencies": ["lucide-react"],
       "files": [
@@ -60,6 +70,106 @@
           "path": "src/components/combobox.tsx",
           "type": "registry:file",
           "target": "~/src/components/combobox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "category": "Table",
+      "tags": ["table", "data", "list", "ui", "grid"],
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "dropdown-menu",
+        "empty",
+        "input-group",
+        "select",
+        "separator",
+        "skeleton",
+        "table"
+      ],
+      "dependencies": ["@tanstack/react-table", "lucide-react"],
+      "files": [
+        {
+          "path": "src/components/data-table/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/column-header.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/column-header.tsx"
+        },
+        {
+          "path": "src/components/data-table/row-action.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/row-action.tsx"
+        },
+        {
+          "path": "src/components/data-table/core/types.ts",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/core/types.ts"
+        },
+        {
+          "path": "src/components/data-table/core/context.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/core/context.tsx"
+        },
+        {
+          "path": "src/components/data-table/core/data-table.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/core/data-table.tsx"
+        },
+        {
+          "path": "src/components/data-table/hooks/use-data-table.ts",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/hooks/use-data-table.ts"
+        },
+        {
+          "path": "src/components/data-table/features/column-toggle/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/column-toggle/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/floating-toolbar/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/floating-toolbar/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/pagination/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/pagination/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/row-selection/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/row-selection/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/states/empty.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/states/empty.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/states/loading.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/states/loading.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/search.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/search.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/status-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/status-filter.tsx"
         }
       ]
     }
