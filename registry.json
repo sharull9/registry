@@ -3,10 +3,10 @@
   "name": "registry",
   "homepage": "https://sharull.vercel.app",
   "include": [
-    "registry/agent.registry.json",
-    "registry/config.registry.json",
-    "registry/provider.registry.json",
-    "registry/util.registry.json"
+    "registry/agent/registry.json",
+    "registry/config/registry.json",
+    "registry/provider/registry.json",
+    "registry/misc/registry.json"
   ],
   "items": [
     {
