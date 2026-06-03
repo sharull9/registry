@@ -4,7 +4,7 @@
     {
       "name": "search-bar",
       "type": "registry:component",
-      "category": "Dashboard",
+      "category": "component",
       "tags": ["search", "form", "input", "ui"],
       "files": [
         {
@@ -18,7 +18,7 @@
     {
       "name": "password-input",
       "type": "registry:component",
-      "category": "Form",
+      "category": "component",
       "tags": ["input", "password", "form", "security", "ui"],
       "files": [
         {
@@ -33,7 +33,7 @@
     {
       "name": "form",
       "type": "registry:component",
-      "category": "Form",
+      "category": "component",
       "tags": ["form", "validation", "input", "ui"],
       "files": [
         {
@@ -48,7 +48,7 @@
     {
       "name": "shader-lines",
       "type": "registry:component",
-      "category": "Graphics",
+      "category": "component",
       "tags": ["graphics", "animation", "shader", "ui"],
       "files": [
         {
@@ -61,7 +61,7 @@
     {
       "name": "combobox",
       "type": "registry:component",
-      "category": "Input",
+      "category": "component",
       "tags": ["select", "dropdown", "input", "ui"],
       "registryDependencies": ["spinner", "popover", "empty", "command", "button"],
       "dependencies": ["lucide-react"],
@@ -76,7 +76,7 @@
     {
       "name": "data-table",
       "type": "registry:component",
-      "category": "Table",
+      "category": "component",
       "tags": ["table", "data", "list", "ui", "grid"],
       "registryDependencies": [
         "button",

@@ -7,7 +7,7 @@ import { SearchIcon, XIcon } from "lucide-react"
 import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs"
 import { useMemo } from "react"
 
-const CATEGORIES = ["all", "agent", "config", "provider", "misc"] as const
+const CATEGORIES = ["all", "agent", "config", "provider", "misc", "component"] as const
 
 const CATEGORY_LABELS: Record<string, string> = {
   all: "All",
@@ -15,12 +15,16 @@ const CATEGORY_LABELS: Record<string, string> = {
   config: "Configs",
   provider: "Providers",
   misc: "Misc",
+  component: "Components",
 }
 
 export function SearchBrowser({ items }: { items: RegistryItem[] }) {
   const [search, setSearch] = useQueryState("q", { defaultValue: "" })
   const [category, setCategory] = useQueryState("cat", { defaultValue: "all" })
-  const [activeTags, setActiveTags] = useQueryState("tags", parseAsArrayOf(parseAsString).withDefault([]))
+  const [activeTags, setActiveTags] = useQueryState(
+    "tags",
+    parseAsArrayOf(parseAsString).withDefault([])
+  )
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { all: items.length }
@@ -57,9 +61,7 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
   }
 
   function handleTagToggle(tag: string) {
-    setActiveTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    )
+    setActiveTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]))
   }
 
   function clearFilters() {
@@ -117,7 +119,7 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
             <div className="sticky top-24 space-y-6">
               {/* Categories */}
               <div>
-                <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                <p className="mb-2 px-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
                   Categories
                 </p>
                 <div className="space-y-0.5">
@@ -130,14 +132,14 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
                         className={[
                           "flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-sm transition-all",
                           isActive
-                            ? "bg-primary text-primary-foreground font-medium"
+                            ? "bg-primary font-medium text-primary-foreground"
                             : "text-muted-foreground hover:bg-muted hover:text-foreground",
                         ].join(" ")}
                       >
                         <span>{CATEGORY_LABELS[cat]}</span>
                         <span
                           className={[
-                            "tabular-nums text-xs",
+                            "text-xs tabular-nums",
                             isActive ? "text-primary-foreground/70" : "text-muted-foreground/60",
                           ].join(" ")}
                         >
@@ -151,7 +153,7 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
 
               {/* Tags */}
               <div>
-                <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                <p className="mb-2 px-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
                   Tags
                 </p>
                 <div className="space-y-0.5">
@@ -164,14 +166,14 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
                         className={[
                           "flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-sm transition-all",
                           isActive
-                            ? "bg-primary text-primary-foreground font-medium"
+                            ? "bg-primary font-medium text-primary-foreground"
                             : "text-muted-foreground hover:bg-muted hover:text-foreground",
                         ].join(" ")}
                       >
                         <span># {tag}</span>
                         <span
                           className={[
-                            "tabular-nums text-xs",
+                            "text-xs tabular-nums",
                             isActive ? "text-primary-foreground/70" : "text-muted-foreground/60",
                           ].join(" ")}
                         >
@@ -202,7 +204,7 @@ export function SearchBrowser({ items }: { items: RegistryItem[] }) {
                     ].join(" ")}
                   >
                     {CATEGORY_LABELS[cat]}
-                    <span className="tabular-nums text-xs opacity-70">
+                    <span className="text-xs tabular-nums opacity-70">
                       {categoryCounts[cat] ?? 0}
                     </span>
                   </button>

@@ -14,6 +14,7 @@ const REGISTRY_FILES = [
   "config/registry.json",
   "provider/registry.json",
   "misc/registry.json",
+  "component/registry.json",
 ] as const
 
 export async function getRegistryItems(): Promise<RegistryItem[]> {
