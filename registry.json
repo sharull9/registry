@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "registry",
+  "items": [
+    {
+      "name": "agent:docs",
+      "type": "registry:item",
+      "files": [
+        {
+          "path": "docs/conventions.md",
+          "type": "registry:folder",
+          "target": "~/docs/agents/"
+        }
+      ]
+    }
+  ]
+}
