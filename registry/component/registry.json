@@ -89,7 +89,7 @@
         "skeleton",
         "table"
       ],
-      "dependencies": ["@tanstack/react-table", "lucide-react"],
+      "dependencies": ["@tanstack/react-table", "lucide-react", "nuqs"],
       "files": [
         {
           "path": "src/components/data-table/index.tsx",
@@ -170,6 +170,26 @@
           "path": "src/components/data-table/features/toolbar/status-filter.tsx",
           "type": "registry:file",
           "target": "~/src/components/data-table/features/toolbar/status-filter.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/export.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/export.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/density-toggle.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/density-toggle.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/row-expansion/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/row-expansion/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/hooks/use-data-table-url-state.ts",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/hooks/use-data-table-url-state.ts"
         }
       ]
     }
