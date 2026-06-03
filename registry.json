@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "registry",
+  "homepage": "https://sharull.vercel.app",
   "items": [
     {
       "name": "agent-docs",
