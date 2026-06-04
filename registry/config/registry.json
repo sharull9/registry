@@ -39,7 +39,7 @@
         {
           "path": "eslint.config.mjs",
           "type": "registry:file",
-          "target": "~/eslint.config.mjs"
+          "target": "./eslint.config.mjs"
         }
       ]
     }
