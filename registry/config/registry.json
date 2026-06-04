@@ -18,13 +18,13 @@
       "tags": ["prettier", "formatting", "config"],
       "files": [
         {
-          "path": ".prettierrc",
+          "path": "../../.prettierrc",
           "type": "registry:file",
           "target": "~/.prettierrc",
           "devDependencies": ["prettier", "prettier-plugin-tailwindcss"]
         },
         {
-          "path": ".prettierignore",
+          "path": "../../.prettierignore",
           "type": "registry:file",
           "target": "~/.prettierignore"
         }
@@ -37,9 +37,9 @@
       "tags": ["eslint", "linting", "config"],
       "files": [
         {
-          "path": "eslint.config.mjs",
+          "path": "../../eslint.config.mjs",
           "type": "registry:file",
-          "target": "./eslint.config.mjs"
+          "target": "~/eslint.config.mjs"
         }
       ]
     }

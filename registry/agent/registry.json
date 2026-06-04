@@ -22,12 +22,12 @@
       "tags": ["docs", "ai", "markdown"],
       "files": [
         {
-          "path": "AGENTS.md",
+          "path": "../../AGENTS.md",
           "type": "registry:file",
           "target": "~/AGENTS.md"
         },
         {
-          "path": "CLAUDE.md",
+          "path": "../../CLAUDE.md",
           "type": "registry:file",
           "target": "~/CLAUDE.md"
         }
@@ -40,7 +40,7 @@
       "tags": ["docs", "api"],
       "files": [
         {
-          "path": "docs/agents/api.md",
+          "path": "../../docs/agents/api.md",
           "type": "registry:file",
           "target": "~/docs/agents/api.md"
         }
@@ -53,7 +53,7 @@
       "tags": ["docs", "architecture"],
       "files": [
         {
-          "path": "docs/agents/architecture.md",
+          "path": "../../docs/agents/architecture.md",
           "type": "registry:file",
           "target": "~/docs/agents/architecture.md"
         }
@@ -66,7 +66,7 @@
       "tags": ["docs", "forms", "state"],
       "files": [
         {
-          "path": "docs/agents/forms-and-state.md",
+          "path": "../../docs/agents/forms-and-state.md",
           "type": "registry:file",
           "target": "~/docs/agents/forms-and-state.md"
         }
@@ -79,7 +79,7 @@
       "tags": ["docs", "routing"],
       "files": [
         {
-          "path": "docs/agents/routing.md",
+          "path": "../../docs/agents/routing.md",
           "type": "registry:file",
           "target": "~/docs/agents/routing.md"
         }
@@ -92,7 +92,7 @@
       "tags": ["docs", "source-of-truth"],
       "files": [
         {
-          "path": "docs/agents/source-of-truth.md",
+          "path": "../../docs/agents/source-of-truth.md",
           "type": "registry:file",
           "target": "~/docs/agents/source-of-truth.md"
         }
@@ -105,7 +105,7 @@
       "tags": ["docs", "ui"],
       "files": [
         {
-          "path": "docs/agents/ui.md",
+          "path": "../../docs/agents/ui.md",
           "type": "registry:file",
           "target": "~/docs/agents/ui.md"
         }

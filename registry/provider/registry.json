@@ -14,7 +14,7 @@
       ],
       "files": [
         {
-          "path": "src/providers/index.tsx",
+          "path": "../../src/providers/index.tsx",
           "type": "registry:file",
           "target": "~/src/providers/index.tsx"
         }
@@ -27,7 +27,7 @@
       "tags": ["nuqs", "url-state", "provider"],
       "files": [
         {
-          "path": "src/providers/nuqs.provider.tsx",
+          "path": "../../src/providers/nuqs.provider.tsx",
           "type": "registry:file",
           "target": "~/src/providers/nuqs.provider.tsx",
           "dependencies": ["nuqs"]
@@ -41,13 +41,13 @@
       "tags": ["react-query", "data-fetching", "provider"],
       "files": [
         {
-          "path": "src/providers/query.provider.tsx",
+          "path": "../../src/providers/query.provider.tsx",
           "type": "registry:file",
           "target": "~/src/providers/query.provider.tsx",
           "dependencies": ["@tanstack/react-query"]
         },
         {
-          "path": "src/lib/query.ts",
+          "path": "../../src/lib/query.ts",
           "type": "registry:file",
           "target": "~/src/lib/query.ts",
           "dependencies": ["@tanstack/react-query", "sonner"]
@@ -61,7 +61,7 @@
       "tags": ["theme", "dark-mode", "provider"],
       "files": [
         {
-          "path": "src/providers/theme.provider.tsx",
+          "path": "../../src/providers/theme.provider.tsx",
           "type": "registry:file",
           "target": "~/src/providers/theme.provider.tsx",
           "dependencies": ["@tanstack/react-hotkeys", "next-themes"]
@@ -75,7 +75,7 @@
       "tags": ["ui", "direction", "tooltip", "provider"],
       "files": [
         {
-          "path": "src/providers/ui.provider.tsx",
+          "path": "../../src/providers/ui.provider.tsx",
           "type": "registry:file",
           "target": "~/src/providers/ui.provider.tsx",
           "dependencies": ["@tanstack/react-hotkeys", "next-themes"],
