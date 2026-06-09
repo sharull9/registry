@@ -11,6 +11,7 @@ import { useMemo, useState } from "react"
 const ITEMS_PER_PAGE = 9
 
 const CATEGORIES = ["all", "agent", "config", "provider", "misc", "component"] as const
+
 type Category = (typeof CATEGORIES)[number]
 
 const CATEGORY_LABELS: Record<Category, string> = {

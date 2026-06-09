@@ -377,6 +377,7 @@
       "type": "registry:item",
       "category": "misc",
       "tags": ["auth", "module", "example", "forms"],
+      "registryDependencies": ["sharull9/registry/shader-lines"],
       "files": [
         {
           "path": "src/modules/auth/ui/components/auth-wrapper.tsx",

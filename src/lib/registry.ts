@@ -9,31 +9,31 @@ export type RegistryItem = {
   addCommandArgument: string
 }
 
-const REGISTRY_FILES = [
-  "agent/registry.json",
-  "config/registry.json",
-  "provider/registry.json",
-  "misc/registry.json",
-  "component/registry.json",
-] as const
+// const REGISTRY_FILES = [
+//   "agent/registry.json",
+//   "config/registry.json",
+//   "provider/registry.json",
+//   "misc/registry.json",
+//   "component/registry.json",
+// ] as const
 
 export async function getRegistryItems(): Promise<RegistryItem[]> {
-  const registryRoot = path.join(process.cwd(), "registry")
+  const registryRoot = path.join(process.cwd())
   const items: RegistryItem[] = []
 
-  for (const file of REGISTRY_FILES) {
-    const folderName = file.split("/")[0]
-    const json = JSON.parse(await fs.readFile(path.join(registryRoot, file), "utf8"))
-    for (const item of json.items ?? []) {
-      items.push({
-        name: item.name,
-        type: item.type ?? "registry:item",
-        category: item.category ?? folderName,
-        tags: Array.isArray(item.tags) ? item.tags : [],
-        addCommandArgument: `sharull9/registry/${item.name}`,
-      })
-    }
+  const json = JSON.parse(await fs.readFile(path.join(registryRoot, "registry.json"), "utf8"))
+  for (const item of json.items ?? []) {
+    items.push({
+      name: item.name,
+      type: item.type ?? "registry:item",
+      category: item.category,
+      tags: Array.isArray(item.tags) ? item.tags : [],
+      addCommandArgument: `sharull9/registry/${item.name}`,
+    })
   }
+  // for (const file of REGISTRY_FILES) {
+  //   const folderName = file.split("/")[0]
+  // }
 
   return items
 }
