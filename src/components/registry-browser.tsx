@@ -10,7 +10,7 @@ import { useMemo, useState } from "react"
 
 const ITEMS_PER_PAGE = 9
 
-const CATEGORIES = ["all", "agent", "config", "provider", "misc"] as const
+const CATEGORIES = ["all", "agent", "config", "provider", "misc", "component"] as const
 type Category = (typeof CATEGORIES)[number]
 
 const CATEGORY_LABELS: Record<Category, string> = {
@@ -19,6 +19,7 @@ const CATEGORY_LABELS: Record<Category, string> = {
   config: "Configs",
   provider: "Providers",
   misc: "Misc",
+  component: "Components",
 }
 
 export function RegistryBrowser({ items }: { items: RegistryItem[] }) {
@@ -63,8 +64,8 @@ export function RegistryBrowser({ items }: { items: RegistryItem[] }) {
     <main className="relative min-h-screen">
       {/* Background gradient orbs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 left-1/2 size-[600px] -translate-x-1/2 rounded-full bg-primary/8 blur-[120px]" />
-        <div className="absolute top-1/3 -right-20 size-[400px] rounded-full bg-primary/5 blur-[100px]" />
+        <div className="absolute -top-40 left-1/2 size-150 -translate-x-1/2 rounded-full bg-primary/8 blur-[120px]" />
+        <div className="absolute top-1/3 -right-20 size-100 rounded-full bg-primary/5 blur-[100px]" />
       </div>
 
       <div className="relative container mx-auto max-w-6xl px-4 py-16">
