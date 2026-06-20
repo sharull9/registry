@@ -22,12 +22,12 @@
       "files": [
         {
           "path": "src/skills/repo-explorer/*",
-          "type": "registry:file",
+          "type": "registry:skills",
           "target": "~/.agents/skills/repo-explorer"
         },
         {
           "path": "src/skills/repo-explorer/*",
-          "type": "registry:file",
+          "type": "registry:skills",
           "target": "~/.claude/skills/repo-explorer"
         }
       ]
