@@ -15,6 +15,24 @@
       ]
     },
     {
+      "name": "skills",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["skills", "ai", "bundle"],
+      "files": [
+        {
+          "path": "src/skills/repo-explorer/*",
+          "type": "registry:file",
+          "target": ["~/.agents/skills/repo-explorer", "~/.claude/skills/repo-explorer"]
+        },
+        {
+          "path": "CLAUDE.md",
+          "type": "registry:file",
+          "target": "~/CLAUDE.md"
+        }
+      ]
+    },
+    {
       "name": "agent-docs",
       "type": "registry:item",
       "category": "agent",

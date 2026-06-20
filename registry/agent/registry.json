@@ -22,12 +22,12 @@
       "tags": ["docs", "ai", "markdown"],
       "files": [
         {
-          "path": "../../AGENTS.md",
+          "path": "AGENTS.md",
           "type": "registry:file",
           "target": "~/AGENTS.md"
         },
         {
-          "path": "../../CLAUDE.md",
+          "path": "CLAUDE.md",
           "type": "registry:file",
           "target": "~/CLAUDE.md"
         }
