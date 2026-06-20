@@ -23,12 +23,12 @@
         {
           "path": "src/skills/repo-explorer/*",
           "type": "registry:file",
-          "target": ["~/.agents/skills/repo-explorer", "~/.claude/skills/repo-explorer"]
+          "target": "~/.agents/skills/repo-explorer"
         },
         {
-          "path": "CLAUDE.md",
+          "path": "src/skills/repo-explorer/*",
           "type": "registry:file",
-          "target": "~/CLAUDE.md"
+          "target": "~/.claude/skills/repo-explorer"
         }
       ]
     },
