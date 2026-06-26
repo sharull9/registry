@@ -1,16 +1,16 @@
 "use client"
 
 import { useDataTableContext } from "@/components/data-table/core/context"
-import type { FloatingToolbarAction } from "@/components/data-table/core/types"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import type { Row } from "@tanstack/react-table"
 import { X } from "lucide-react"
 
 interface DataTableFloatingToolbarProps<TData> {
-  actions: FloatingToolbarAction<TData>[]
+  children: (rows: Row<TData>[]) => React.ReactNode
 }
 
-export function DataTableFloatingToolbar<TData>({ actions }: DataTableFloatingToolbarProps<TData>) {
+export function DataTableFloatingToolbar<TData>({ children }: DataTableFloatingToolbarProps<TData>) {
   "use no memo"
   const { table } = useDataTableContext<TData>()
   const selectedRows = table.getFilteredSelectedRowModel().rows
@@ -23,18 +23,7 @@ export function DataTableFloatingToolbar<TData>({ actions }: DataTableFloatingTo
       <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 shadow-lg">
         <span className="text-sm font-medium text-muted-foreground">{count} selected</span>
         <Separator orientation="vertical" className="mx-1 h-5" />
-        {actions.map((action) => (
-          <Button
-            key={action.label}
-            variant={action.variant ?? "outline"}
-            size="sm"
-            onClick={() => action.onClick(selectedRows)}
-            className="h-8"
-          >
-            {action.icon && <span className="mr-1">{action.icon}</span>}
-            {action.label}
-          </Button>
-        ))}
+        {children(selectedRows)}
         <Separator orientation="vertical" className="mx-1 h-5" />
         <Button
           variant="ghost"

@@ -1,6 +1,9 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { CheckIcon, CopyIcon } from "lucide-react"
-import React, { useState } from "react"
+import React from "react"
 
 type CopyButtonProps = React.ComponentProps<typeof Button> & {
   value: string
@@ -16,17 +19,11 @@ export default function CopyButton({
   showLabel = true,
   ...props
 }: CopyButtonProps) {
-  const [copied, setCopied] = useState(false)
+  const { copied, copy } = useCopyToClipboard()
 
   const handleCopy = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation()
-    try {
-      await navigator.clipboard.writeText(value)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
-    } catch (error) {
-      setCopied(false)
-    }
+    await copy(value)
     if (props.onClick) props.onClick(e)
   }
 

@@ -10,35 +10,14 @@ import {
 import { Search, X } from "lucide-react"
 
 interface DataTableSearchProps {
-  value?: string
-  onChange?: (value: string) => void
   placeholder?: string
 }
 
-export function DataTableSearch({
-  value,
-  onChange,
-  placeholder = "Search...",
-}: DataTableSearchProps) {
-  const { searchValue: contextValue, setSearchValue } = useDataTableContext()
-  const displayValue = value ?? contextValue
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const nextValue = e.target.value
-    if (onChange) {
-      onChange(nextValue)
-      return
-    }
-    setSearchValue(nextValue)
-  }
-
-  const handleClear = () => {
-    if (onChange) {
-      onChange("")
-      return
-    }
-    setSearchValue("")
-  }
+export function DataTableSearch({ placeholder = "Search..." }: DataTableSearchProps) {
+  "use no memo"
+  // TanStack Table exposes a stable mutable table instance; compiler memoization can hide table state updates.
+  const { table } = useDataTableContext()
+  const value = (table.getState().globalFilter as string) ?? ""
 
   return (
     <InputGroup className="relative w-full lg:max-w-2xs">
@@ -47,13 +26,13 @@ export function DataTableSearch({
       </InputGroupAddon>
       <InputGroupInput
         placeholder={placeholder}
-        value={displayValue}
-        onChange={handleChange}
+        value={value}
+        onChange={(e) => table.setGlobalFilter(e.target.value)}
         className="h-8 pl-8"
       />
       <InputGroupAddon align="inline-end">
-        {displayValue && (
-          <InputGroupButton onClick={handleClear}>
+        {value && (
+          <InputGroupButton onClick={() => table.setGlobalFilter("")}>
             <X />
           </InputGroupButton>
         )}

@@ -25,8 +25,9 @@ export function DataTablePagination({
   showPageSizeSelector = true,
 }: DataTablePaginationProps) {
   "use no memo"
-  const { table, state } = useDataTableContext()
-  const { pagination } = state
+  // TanStack Table exposes a stable mutable table instance; compiler memoization can hide table state updates.
+  const { table } = useDataTableContext()
+  const pagination = table.getState().pagination
   const selectedCount = table.getFilteredSelectedRowModel().rows.length
   const totalCount = table.getRowCount()
   const pageCount = Math.max(table.getPageCount(), 1)

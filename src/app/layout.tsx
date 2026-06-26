@@ -19,11 +19,7 @@ export const metadata: Metadata = {
   description: "Browse and install production-ready components, providers, configs, and agents.",
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<React.PropsWithChildren>) {
   return (
     <html
       lang="en"

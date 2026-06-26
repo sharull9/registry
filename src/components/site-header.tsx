@@ -33,6 +33,17 @@ export function SiteHeader() {
               <SearchIcon className="size-3.5" />
               Browse
             </Link>
+            <Link
+              href="/docs"
+              className={[
+                "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-colors",
+                pathname.startsWith("/docs")
+                  ? "bg-muted font-medium text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
+              ].join(" ")}
+            >
+              Docs
+            </Link>
           </nav>
         </div>
         <div>

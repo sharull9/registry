@@ -1,26 +1,12 @@
 "use client"
-import type {
-  PaginationState,
-  RowSelectionState,
-  SortingState,
-  Table,
-  VisibilityState,
-} from "@tanstack/react-table"
+import type { DataTableDensity } from "@/components/data-table/core/types"
+import type { Table } from "@tanstack/react-table"
 import { createContext, useContext } from "react"
-
-export interface DataTableStateSnapshot {
-  sorting: SortingState
-  columnVisibility: VisibilityState
-  rowSelection: RowSelectionState
-  pagination: PaginationState
-  globalFilter: string
-}
 
 export interface DataTableContextValue<TData = unknown> {
   table: Table<TData>
-  state: DataTableStateSnapshot
-  searchValue: string
-  setSearchValue: (value: string) => void
+  density: DataTableDensity
+  setDensity: (d: DataTableDensity) => void
 }
 
 export const DataTableContext = createContext<DataTableContextValue<unknown> | null>(null)
