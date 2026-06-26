@@ -6,13 +6,17 @@ import {
   DataTableColumnHeader,
   DataTableColumnToggle,
   DataTableContent,
+  DataTableFloatingToolbar,
   DataTablePagination,
   DataTableRowActions,
   DataTableSearch,
+  DataTableStatusFilter,
   DataTableToolbar,
+  rowSelectionColumn,
   useDataTableUrlState,
 } from "@/components/data-table"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   getCoreRowModel,
   getFilteredRowModel,
@@ -20,7 +24,9 @@ import {
   getSortedRowModel,
   useReactTable,
   type ColumnDef,
+  type ColumnFiltersState,
 } from "@tanstack/react-table"
+import { useState } from "react"
 
 type User = {
   id: string
@@ -65,6 +71,7 @@ const data: User[] = [
 ]
 
 const columns: ColumnDef<User>[] = [
+  rowSelectionColumn<User>(),
   {
     accessorKey: "name",
     header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />,
@@ -76,10 +83,14 @@ const columns: ColumnDef<User>[] = [
   {
     accessorKey: "role",
     header: ({ column }) => <DataTableColumnHeader column={column} title="Role" />,
+    filterFn: (row, columnId, filterValue: string[]) =>
+      filterValue.length === 0 || filterValue.includes(row.getValue(columnId)),
   },
   {
     accessorKey: "status",
     header: ({ column }) => <DataTableColumnHeader column={column} title="Status" />,
+    filterFn: (row, columnId, filterValue: string) =>
+      !filterValue || row.getValue(columnId) === filterValue,
     cell: ({ row }) => (
       <Badge variant={row.original.status === "active" ? "default" : "secondary"}>
         {row.original.status}
@@ -159,7 +170,6 @@ function MyTable() {
 
 function BasicExample() {
   "use no memo"
-  // const [globalFilter, setGlobalFilter] = useState("")
   const {
     sorting,
     onSortingChange,
@@ -171,13 +181,18 @@ function BasicExample() {
     keys: { sort: "sort", page: "page", pageSize: "pageSize", search: "q" },
   })
 
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [roleFilter, setRoleFilter] = useState<string[]>([])
+  const [statusFilter, setStatusFilter] = useState("")
+
   const table = useReactTable({
     data,
     columns,
-    state: { sorting, pagination, globalFilter },
+    state: { sorting, pagination, globalFilter, columnFilters },
     onSortingChange,
     onPaginationChange,
     onGlobalFilterChange,
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -189,10 +204,51 @@ function BasicExample() {
     <DataTable table={table}>
       <DataTableToolbar>
         <DataTableSearch />
+        <DataTableStatusFilter
+          columnId="role"
+          mode="multi"
+          label="Role"
+          value={roleFilter}
+          onChange={setRoleFilter}
+          options={[
+            { label: "Admin", value: "Admin" },
+            { label: "Editor", value: "Editor" },
+            { label: "Viewer", value: "Viewer" },
+          ]}
+        />
+        <DataTableStatusFilter
+          columnId="status"
+          mode="single"
+          label="Status"
+          value={statusFilter}
+          onChange={setStatusFilter}
+          options={[
+            { label: "All", value: "all" },
+            { label: "Active", value: "active" },
+            { label: "Inactive", value: "inactive" },
+          ]}
+        />
         <DataTableColumnToggle />
       </DataTableToolbar>
       <DataTableContent />
       <DataTablePagination />
+      <DataTableFloatingToolbar<User>>
+        {(rows) => (
+          <Button
+            variant="destructive"
+            size="sm"
+            className="h-8"
+            onClick={() =>
+              console.log(
+                "delete",
+                rows.map((r) => r.original.id)
+              )
+            }
+          >
+            Delete
+          </Button>
+        )}
+      </DataTableFloatingToolbar>
     </DataTable>
   )
 }
