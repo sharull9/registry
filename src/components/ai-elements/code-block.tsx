@@ -372,8 +372,6 @@ export const CodeBlockContent = ({
     [code, language, rawTokens]
   )
 
-  console.log(typeof window == "object" ? "client" : "server", syncTokens)
-
   // Async highlighting result (populated after shiki loads)
   const [asyncTokens, setAsyncTokens] = useState<TokenizedCode | null>(null)
   const asyncKeyRef = useRef({ code, language })
