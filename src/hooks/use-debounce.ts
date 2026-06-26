@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef } from "react"
  * and always calls the latest `callback` via a ref, so it's safe to use in deps arrays.
  * The timer is cleaned up on unmount.
  */
-export function useDebounce<T extends (...args: unknown[]) => void>(
+export function useDebounce<T extends (...args: any[]) => void>(
   callback: T,
   delay: number,
 ): T {
@@ -24,7 +24,7 @@ export function useDebounce<T extends (...args: unknown[]) => void>(
   }, [])
 
   const debouncedFn = useCallback(
-    (...args: unknown[]) => {
+    (...args: any[]) => {
       if (timerRef.current) clearTimeout(timerRef.current)
       timerRef.current = setTimeout(() => {
         callbackRef.current(...args)
