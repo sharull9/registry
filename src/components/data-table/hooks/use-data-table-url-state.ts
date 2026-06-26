@@ -28,7 +28,10 @@ export function useDataTableUrlState(options?: UseDataTableUrlStateOptions): {
 
   const [rawSort, setRawSort] = useQueryState(sortKey, parseAsString)
   const [pageIndex, setPageIndex] = useQueryState(pageKey, parseAsInteger.withDefault(0))
-  const [pageSize, setPageSize] = useQueryState(pageSizeKey, parseAsInteger.withDefault(options?.defaultPageSize ?? 10))
+  const [pageSize, setPageSize] = useQueryState(
+    pageSizeKey,
+    parseAsInteger.withDefault(options?.defaultPageSize ?? 10)
+  )
   const [searchValue, setSearchValue] = useQueryState(searchKey, parseAsString.withDefault(""))
 
   const sorting: SortingState = rawSort
