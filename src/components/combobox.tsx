@@ -38,6 +38,8 @@ export type ComboboxProps = {
   values?: string[]
   /** Called with the updated id array (multi mode) */
   onValuesChange?: (values: string[]) => void
+  /** Max number of selected-value badges to show in the trigger before "+N more". Only applies in multi mode. */
+  maxChips?: number
 
   // --- display ---
   placeholder: string
@@ -83,6 +85,7 @@ export function Combobox({
   onSearch,
   disabled,
   includeAll,
+  maxChips,
   className,
   errorMessage,
   selectedLabel,
@@ -135,11 +138,14 @@ export function Combobox({
       }
       return (
         <span className="flex min-w-0 flex-wrap gap-1">
-          {selectedOptions.map((o) => (
+          {selectedOptions.slice(0, maxChips).map((o) => (
             <Badge key={o.id} variant="secondary" className="shrink-0">
               {o.label}
             </Badge>
           ))}
+          {maxChips !== undefined && selectedOptions.length > maxChips && (
+            <span className="text-muted-foreground text-sm">+{selectedOptions.length - maxChips} more</span>
+          )}
         </span>
       )
     }
