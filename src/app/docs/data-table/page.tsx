@@ -1,5 +1,6 @@
 "use client"
 
+import CopyButton from "@/components/copy-button"
 import {
   DataTable,
   DataTableColumnHeader,
@@ -9,10 +10,17 @@ import {
   DataTableRowActions,
   DataTableSearch,
   DataTableToolbar,
+  useDataTableUrlState,
 } from "@/components/data-table"
-import CopyButton from "@/components/copy-button"
 import { Badge } from "@/components/ui/badge"
-import type { ColumnDef } from "@tanstack/react-table"
+import {
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+  type ColumnDef,
+} from "@tanstack/react-table"
 
 type User = {
   id: string
@@ -33,6 +41,27 @@ const data: User[] = [
   { id: "8", name: "Henry Davis", email: "henry@example.com", role: "Viewer", status: "active" },
   { id: "9", name: "Iris Chen", email: "iris@example.com", role: "Admin", status: "inactive" },
   { id: "10", name: "Jack Wilson", email: "jack@example.com", role: "Editor", status: "active" },
+  { id: "11", name: "Karen Taylor", email: "karen@example.com", role: "Viewer", status: "active" },
+  { id: "12", name: "Leo Anderson", email: "leo@example.com", role: "Admin", status: "active" },
+  { id: "13", name: "Mia Thomas", email: "mia@example.com", role: "Editor", status: "inactive" },
+  { id: "14", name: "Noah Jackson", email: "noah@example.com", role: "Viewer", status: "active" },
+  { id: "15", name: "Olivia Harris", email: "olivia@example.com", role: "Admin", status: "active" },
+  {
+    id: "16",
+    name: "Patrick Moore",
+    email: "patrick@example.com",
+    role: "Editor",
+    status: "inactive",
+  },
+  { id: "17", name: "Quinn Martin", email: "quinn@example.com", role: "Viewer", status: "active" },
+  { id: "18", name: "Rachel Garcia", email: "rachel@example.com", role: "Admin", status: "active" },
+  { id: "19", name: "Sam Robinson", email: "sam@example.com", role: "Editor", status: "active" },
+  { id: "20", name: "Tina Clark", email: "tina@example.com", role: "Viewer", status: "inactive" },
+  { id: "21", name: "Umar Lewis", email: "umar@example.com", role: "Editor", status: "active" },
+  { id: "22", name: "Vera Walker", email: "vera@example.com", role: "Admin", status: "active" },
+  { id: "23", name: "Will Hall", email: "will@example.com", role: "Viewer", status: "active" },
+  { id: "24", name: "Xena Young", email: "xena@example.com", role: "Editor", status: "inactive" },
+  { id: "25", name: "Yuki Allen", email: "yuki@example.com", role: "Admin", status: "active" },
 ]
 
 const columns: ColumnDef<User>[] = [
@@ -75,7 +104,12 @@ const code = `import {
   DataTablePagination, DataTableColumnHeader,
   DataTableRowActions,
 } from "@/components/data-table"
-import type { ColumnDef } from "@tanstack/react-table"
+import {
+  getCoreRowModel, getFilteredRowModel,
+  getPaginationRowModel, getSortedRowModel,
+  useReactTable, type ColumnDef,
+} from "@tanstack/react-table"
+import { useState } from "react"
 
 type User = { id: string; name: string; email: string; role: string; status: string }
 
@@ -96,19 +130,72 @@ const columns: ColumnDef<User>[] = [
   },
 ]
 
-<DataTable
-  data={users}
-  columns={columns}
-  search={{ enabled: true }}
-  rowSelection={{ enabled: true }}
->
-  <DataTableToolbar>
-    <DataTableSearch />
-    <DataTableColumnToggle />
-  </DataTableToolbar>
-  <DataTableContent />
-  <DataTablePagination />
-</DataTable>`
+function MyTable() {
+  const [globalFilter, setGlobalFilter] = useState("")
+
+  const table = useReactTable({
+    data: users,
+    columns,
+    state: { globalFilter },
+    onGlobalFilterChange: setGlobalFilter,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    enableRowSelection: true,
+  })
+
+  return (
+    <DataTable table={table}>
+      <DataTableToolbar>
+        <DataTableSearch />
+        <DataTableColumnToggle />
+      </DataTableToolbar>
+      <DataTableContent />
+      <DataTablePagination />
+    </DataTable>
+  )
+}`
+
+function BasicExample() {
+  "use no memo"
+  // const [globalFilter, setGlobalFilter] = useState("")
+  const {
+    sorting,
+    onSortingChange,
+    pagination,
+    onPaginationChange,
+    globalFilter,
+    onGlobalFilterChange,
+  } = useDataTableUrlState({
+    keys: { sort: "sort", page: "page", pageSize: "pageSize", search: "q" },
+  })
+
+  const table = useReactTable({
+    data,
+    columns,
+    state: { sorting, pagination, globalFilter },
+    onSortingChange,
+    onPaginationChange,
+    onGlobalFilterChange,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    enableRowSelection: true,
+  })
+
+  return (
+    <DataTable table={table}>
+      <DataTableToolbar>
+        <DataTableSearch />
+        <DataTableColumnToggle />
+      </DataTableToolbar>
+      <DataTableContent />
+      <DataTablePagination />
+    </DataTable>
+  )
+}
 
 export default function DataTablePage() {
   return (
@@ -116,8 +203,9 @@ export default function DataTablePage() {
       <div>
         <h1 className="text-2xl font-semibold">DataTable</h1>
         <p className="mt-1 text-muted-foreground">
-          A composable table built on TanStack Table. Features search, sorting, pagination, column
-          visibility, and row selection out of the box.
+          A composable table built on TanStack Table. Create your table with{" "}
+          <code className="font-mono text-sm">useReactTable()</code> and pass it in — full control
+          over which features and row models you enable.
         </p>
       </div>
 
@@ -125,19 +213,7 @@ export default function DataTablePage() {
         <h2 className="text-lg font-medium">Basic</h2>
         <div className="overflow-hidden rounded-lg border">
           <div className="p-4">
-            <DataTable
-              data={data}
-              columns={columns}
-              search={{ enabled: true }}
-              rowSelection={{ enabled: true }}
-            >
-              <DataTableToolbar>
-                <DataTableSearch />
-                <DataTableColumnToggle />
-              </DataTableToolbar>
-              <DataTableContent />
-              <DataTablePagination />
-            </DataTable>
+            <BasicExample />
           </div>
           <div className="relative border-t bg-muted/50">
             <CopyButton
@@ -159,22 +235,16 @@ export default function DataTablePage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b text-left">
-              <th className="pb-2 pr-4 font-medium">Prop</th>
-              <th className="pb-2 pr-4 font-medium">Type</th>
+              <th className="pr-4 pb-2 font-medium">Prop</th>
+              <th className="pr-4 pb-2 font-medium">Type</th>
               <th className="pb-2 font-medium">Description</th>
             </tr>
           </thead>
           <tbody className="text-muted-foreground">
             {[
-              ["data", "TData[]", "Row data array"],
-              ["columns", "ColumnDef<TData>[]", "TanStack Table column definitions"],
-              ["rowSelection", "{ enabled, mode? }", 'Enable row selection. mode: "single" | "multi" (default: multi)'],
-              ["rowExpansion", "{ enabled, renderSubRow }", "Enable expandable rows with a sub-row renderer"],
-              ["search", "{ enabled?, mode?, columnIds? }", 'Search config. mode: "global" | "column"'],
-              ["pageSize", "number", "Rows per page (default: 10)"],
-              ["rowCount", "number", "Total row count for server-side pagination"],
-              ["state", "DataTableControlledState", "Pass controlled state for server-driven tables"],
-              ["onStateChange", "DataTableStateChangeHandlers", "Handlers for controlled state changes"],
+              ["table", "Table<TData>", "TanStack table instance from useReactTable()"],
+              ["className", "string", "Optional wrapper class"],
+              ["children", "ReactNode", "Composable children: toolbar, content, pagination"],
             ].map(([prop, type, desc]) => (
               <tr key={prop} className="border-b last:border-0">
                 <td className="py-2 pr-4 font-mono text-foreground">{prop}</td>
@@ -191,7 +261,7 @@ export default function DataTablePage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b text-left">
-              <th className="pb-2 pr-4 font-medium">Component</th>
+              <th className="pr-4 pb-2 font-medium">Component</th>
               <th className="pb-2 font-medium">Description</th>
             </tr>
           </thead>
@@ -199,13 +269,27 @@ export default function DataTablePage() {
             {[
               ["DataTableContent", "Renders the table. Accepts isLoading, emptyState, onRowClick"],
               ["DataTableToolbar", "Flex row container for toolbar actions"],
-              ["DataTableSearch", "Search input wired to table context"],
+              ["DataTableSearch", "Search input wired to table.getState().globalFilter"],
               ["DataTablePagination", "Page size selector and prev/next navigation"],
               ["DataTableColumnToggle", "Dropdown to show/hide columns"],
               ["DataTableColumnHeader", "Sortable column header with asc/desc/hide dropdown"],
               ["DataTableRowActions", "Three-dot row menu with edit, delete, and custom actions"],
               ["DataTableFloatingToolbar", "Fixed bottom bar with bulk actions for selected rows"],
-              ["DataTableStatusFilter", "Select dropdown for filtering by a status column"],
+              [
+                "DataTableStatusFilter",
+                'Select/multi-dropdown for filtering. mode: "single" | "multi"',
+              ],
+              [
+                "DataTableFacetedFilter",
+                "Multi-select filter showing value counts from the dataset",
+              ],
+              ["DataTableDateRangeFilter", "Date range picker wired to a column filter"],
+              [
+                "DataTableNumberRangeFilter",
+                "Min/max numeric range filter wired to a column filter",
+              ],
+              ["DataTableSavedViews", "Save and restore named table states to localStorage"],
+              ["DataTableDensityToggle", "Toggle compact / default / comfortable row density"],
             ].map(([name, desc]) => (
               <tr key={name} className="border-b last:border-0">
                 <td className="py-2 pr-4 font-mono text-foreground">{name}</td>

@@ -1,10 +1,6 @@
 "use client"
 
-import type {
-  DataTableControlledState,
-  DataTableStateChangeHandlers,
-} from "@/components/data-table/core/types"
-import type { PaginationState, SortingState } from "@tanstack/react-table"
+import { functionalUpdate, type OnChangeFn, type PaginationState, type SortingState } from "@tanstack/react-table"
 import { parseAsInteger, parseAsString, useQueryState } from "nuqs"
 
 interface UseDataTableUrlStateOptions {
@@ -17,10 +13,7 @@ interface UseDataTableUrlStateOptions {
   defaultPageSize?: number
 }
 
-export function useDataTableUrlState(options?: UseDataTableUrlStateOptions): {
-  state: DataTableControlledState
-  onStateChange: DataTableStateChangeHandlers
-} {
+export function useDataTableUrlState(options?: UseDataTableUrlStateOptions) {
   const sortKey = options?.keys?.sort ?? "sort"
   const pageKey = options?.keys?.page ?? "page"
   const pageSizeKey = options?.keys?.pageSize ?? "pageSize"
@@ -32,7 +25,7 @@ export function useDataTableUrlState(options?: UseDataTableUrlStateOptions): {
     pageSizeKey,
     parseAsInteger.withDefault(options?.defaultPageSize ?? 10)
   )
-  const [searchValue, setSearchValue] = useQueryState(searchKey, parseAsString.withDefault(""))
+  const [globalFilter, setGlobalFilter] = useQueryState(searchKey, parseAsString.withDefault(""))
 
   const sorting: SortingState = rawSort
     ? rawSort.split(",").flatMap((segment) => {
@@ -47,27 +40,31 @@ export function useDataTableUrlState(options?: UseDataTableUrlStateOptions): {
 
   const pagination: PaginationState = { pageIndex, pageSize }
 
-  const state: DataTableControlledState = {
+  const onSortingChange: OnChangeFn<SortingState> = (updater) => {
+    const next = functionalUpdate(updater, sorting)
+    const encoded = next.map((s) => `${s.id}.${s.desc ? "desc" : "asc"}`).join(",")
+    void setRawSort(encoded || null)
+    void setPageIndex(0)
+  }
+
+  const onPaginationChange: OnChangeFn<PaginationState> = (updater) => {
+    const next = functionalUpdate(updater, pagination)
+    void setPageIndex(next.pageIndex)
+    void setPageSize(next.pageSize)
+  }
+
+  const onGlobalFilterChange: OnChangeFn<string> = (updater) => {
+    const next = String(functionalUpdate(updater, globalFilter ?? ""))
+    void setGlobalFilter(next || null)
+    void setPageIndex(0)
+  }
+
+  return {
     sorting,
+    onSortingChange,
     pagination,
-    searchValue: searchValue ?? "",
+    onPaginationChange,
+    globalFilter: globalFilter ?? "",
+    onGlobalFilterChange,
   }
-
-  const onStateChange: DataTableStateChangeHandlers = {
-    onSortingChange: (value) => {
-      const encoded = value.map((s) => `${s.id}.${s.desc ? "desc" : "asc"}`).join(",")
-      void setRawSort(encoded || null)
-      void setPageIndex(0)
-    },
-    onPaginationChange: (value) => {
-      void setPageIndex(value.pageIndex)
-      void setPageSize(value.pageSize)
-    },
-    onSearchValueChange: (value) => {
-      void setSearchValue(value || null)
-      void setPageIndex(0)
-    },
-  }
-
-  return { state, onStateChange }
 }

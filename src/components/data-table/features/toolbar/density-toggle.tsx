@@ -1,5 +1,7 @@
 "use client"
 
+import { useDataTableContext } from "@/components/data-table/core/context"
+import type { DataTableDensity } from "@/components/data-table/core/types"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -8,31 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { AlignJustify } from "lucide-react"
-import { createContext, useContext, useState } from "react"
 
-export type DataTableDensity = "compact" | "default" | "comfortable"
-
-interface DensityContextValue {
-  density: DataTableDensity
-  setDensity: (d: DataTableDensity) => void
-}
-
-const DensityContext = createContext<DensityContextValue | null>(null)
-
-export function DataTableDensityProvider({ children }: { children: React.ReactNode }) {
-  const [density, setDensity] = useState<DataTableDensity>("default")
-  return <DensityContext.Provider value={{ density, setDensity }}>{children}</DensityContext.Provider>
-}
-
-export function useDataTableDensity(): DensityContextValue {
-  const ctx = useContext(DensityContext)
-  if (!ctx) throw new Error("useDataTableDensity must be used within <DataTableDensityProvider>")
-  return ctx
-}
-
-export function useDataTableDensityOptional(): DensityContextValue | null {
-  return useContext(DensityContext)
-}
+export type { DataTableDensity }
 
 export const densityRowClass: Record<DataTableDensity, string> = {
   compact: "[&_td]:py-1 [&_td]:text-xs",
@@ -47,7 +26,7 @@ const LABELS: Record<DataTableDensity, string> = {
 }
 
 export function DataTableDensityToggle() {
-  const { density, setDensity } = useDataTableDensity()
+  const { density, setDensity } = useDataTableContext()
 
   return (
     <DropdownMenu>
