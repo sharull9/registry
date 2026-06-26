@@ -1,6 +1,5 @@
 "use client"
 
-import CopyButton from "@/components/copy-button"
 import {
   DataTable,
   DataTableColumnHeader,
@@ -15,6 +14,7 @@ import {
   rowSelectionColumn,
   useDataTableUrlState,
 } from "@/components/data-table"
+import { ComponentPreview } from "@/components/docs/component-preview"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -26,7 +26,7 @@ import {
   type ColumnDef,
   type ColumnFiltersState,
 } from "@tanstack/react-table"
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { toast } from "sonner"
 
 type User = {
@@ -186,6 +186,7 @@ function BasicExample() {
   const [roleFilter, setRoleFilter] = useState<string[]>([])
   const [statusFilter, setStatusFilter] = useState<string | undefined>(undefined)
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,
@@ -266,23 +267,11 @@ export default function DataTablePage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>
-        <div className="overflow-hidden rounded-lg border">
-          <div className="p-4">
+        <ComponentPreview code={code} fileName="data-table-basic.tsx">
+          <Suspense>
             <BasicExample />
-          </div>
-          <div className="relative border-t bg-muted/50">
-            <CopyButton
-              value={code}
-              showLabel={false}
-              variant="ghost"
-              size="icon"
-              className="absolute top-3 right-3 h-7 w-7"
-            />
-            <pre className="overflow-x-auto p-4 pr-12 font-mono text-sm">
-              <code>{code}</code>
-            </pre>
-          </div>
-        </div>
+          </Suspense>
+        </ComponentPreview>
       </section>
 
       <section className="space-y-3">
