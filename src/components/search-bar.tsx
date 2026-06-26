@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
+import { RegisterableHotkey, useHotkey } from "@tanstack/react-hotkeys"
 import { SearchIcon } from "lucide-react"
 import * as React from "react"
 
@@ -32,6 +33,7 @@ type SearchBarProps<T> = {
   getItemKeywords: (item: T, group: SearchGroup<T>) => string[]
   isActive: (item: T) => boolean
   onSelect: (item: T) => void
+  hotkey?: RegisterableHotkey
   children: React.ReactNode
 }
 
@@ -46,10 +48,15 @@ export function SearchBar<T>({
   getItemKeywords,
   isActive,
   onSelect,
+  hotkey = "Mod+K",
   children,
 }: SearchBarProps<T>) {
   const [open, setOpen] = React.useState(false)
   const [query, setQuery] = React.useState("")
+
+  useHotkey(hotkey, () => {
+    setOpen(true)
+  })
 
   const normalizedQuery = query.trim().toLowerCase()
 
@@ -84,7 +91,7 @@ export function SearchBar<T>({
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="max-h-[80vh] overflow-hidden p-0 sm:max-w-2xl">
+      <DialogContent className="max-h-[80vh] gap-0 overflow-hidden p-0 sm:max-w-2xl">
         <div className="border-b px-5 py-4">
           <DialogHeader>
             <DialogTitle>{searchLabel}</DialogTitle>
@@ -101,7 +108,7 @@ export function SearchBar<T>({
         </div>
 
         <ScrollArea className="max-h-[60vh] px-2 py-3">
-          <div className="flex flex-col gap-4 px-3 pb-3">
+          <div className="flex flex-col gap-4">
             {filteredGroups.length === 0 ? (
               <p className="px-2 py-6 text-center text-sm text-muted-foreground">
                 {noResultsLabel}
@@ -109,10 +116,10 @@ export function SearchBar<T>({
             ) : (
               filteredGroups.map((group) => (
                 <div key={group.key} className="grid gap-2">
-                  <div className="px-2 text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                  <div className="px-2 text-xs tracking-[0.2em] text-muted-foreground">
                     {group.label}
                   </div>
-                  <div className="grid gap-1">
+                  <div className="grid gap-1 pl-2">
                     {group.items.map((item) => {
                       const Icon = getItemIcon(item)
                       const active = isActive(item)

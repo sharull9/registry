@@ -27,6 +27,7 @@ import {
   type ColumnFiltersState,
 } from "@tanstack/react-table"
 import { useState } from "react"
+import { toast } from "sonner"
 
 type User = {
   id: string
@@ -89,8 +90,8 @@ const columns: ColumnDef<User>[] = [
   {
     accessorKey: "status",
     header: ({ column }) => <DataTableColumnHeader column={column} title="Status" />,
-    filterFn: (row, columnId, filterValue: string) =>
-      !filterValue || row.getValue(columnId) === filterValue,
+    filterFn: (row, columnId, filterValue: string | undefined) =>
+      filterValue === undefined || row.getValue(columnId) === filterValue,
     cell: ({ row }) => (
       <Badge variant={row.original.status === "active" ? "default" : "secondary"}>
         {row.original.status}
@@ -183,7 +184,7 @@ function BasicExample() {
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [roleFilter, setRoleFilter] = useState<string[]>([])
-  const [statusFilter, setStatusFilter] = useState("")
+  const [statusFilter, setStatusFilter] = useState<string | undefined>(undefined)
 
   const table = useReactTable({
     data,
@@ -223,7 +224,6 @@ function BasicExample() {
           value={statusFilter}
           onChange={setStatusFilter}
           options={[
-            { label: "All", value: "all" },
             { label: "Active", value: "active" },
             { label: "Inactive", value: "inactive" },
           ]}
@@ -239,10 +239,9 @@ function BasicExample() {
             size="sm"
             className="h-8"
             onClick={() =>
-              console.log(
-                "delete",
-                rows.map((r) => r.original.id)
-              )
+              toast.success("Deleted Successfully", {
+                description: `Deleted ${rows.length} ${rows.length === 1 ? "item" : "items"}`,
+              })
             }
           >
             Delete

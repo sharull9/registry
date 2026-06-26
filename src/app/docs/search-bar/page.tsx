@@ -3,6 +3,8 @@
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { SearchBar } from "@/components/search-bar"
 import { Button } from "@/components/ui/button"
+import { Kbd } from "@/components/ui/kbd"
+import { formatForDisplay } from "@tanstack/react-hotkeys"
 import {
   BoxIcon,
   ComponentIcon,
@@ -15,7 +17,12 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 
-type Item = { id: string; label: string; group: string; icon: React.ComponentType<{ className?: string }> }
+type Item = {
+  id: string
+  label: string
+  group: string
+  icon: React.ComponentType<{ className?: string }>
+}
 
 const items: Item[] = [
   { id: "button", label: "Button", group: "ui", icon: BoxIcon },
@@ -75,9 +82,11 @@ function LiveExample() {
       getItemKeywords={(item, group) => [group.label]}
       isActive={(item) => item.id === active}
       onSelect={(item) => setActive(item.id)}
+      hotkey="Mod+K"
     >
       <Button variant="outline">
         <SearchIcon className="size-4" />
+        <Kbd>{formatForDisplay("Mod+K")}</Kbd>
         Search components...
       </Button>
     </SearchBar>
@@ -106,8 +115,8 @@ export default function SearchBarPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b text-left">
-              <th className="pb-2 pr-4 font-medium">Prop</th>
-              <th className="pb-2 pr-4 font-medium">Type</th>
+              <th className="pr-4 pb-2 font-medium">Prop</th>
+              <th className="pr-4 pb-2 font-medium">Type</th>
               <th className="pb-2 font-medium">Description</th>
             </tr>
           </thead>
@@ -119,8 +128,16 @@ export default function SearchBarPage() {
               ["groups", "SearchGroup<T>[]", "Array of { key, label, items[] }"],
               ["getItemKey", "(item: T) => string", "Returns a unique key for each item"],
               ["getItemLabel", "(item: T) => string", "Returns the display label for each item"],
-              ["getItemIcon", "(item: T) => ComponentType", "Returns the icon component for each item"],
-              ["getItemKeywords", "(item, group) => string[]", "Returns searchable keywords for each item"],
+              [
+                "getItemIcon",
+                "(item: T) => ComponentType",
+                "Returns the icon component for each item",
+              ],
+              [
+                "getItemKeywords",
+                "(item, group) => string[]",
+                "Returns searchable keywords for each item",
+              ],
               ["isActive", "(item: T) => boolean", "Highlights the item when true"],
               ["onSelect", "(item: T) => void", "Called when an item is clicked"],
               ["children", "ReactNode", "The trigger element that opens the dialog"],

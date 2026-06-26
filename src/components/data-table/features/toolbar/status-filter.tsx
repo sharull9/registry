@@ -10,14 +10,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { ChevronDown } from "lucide-react"
 
 type FilterOption = { label: string; value: string }
@@ -28,8 +20,9 @@ type DataTableStatusFilterProps<M extends "single" | "multi"> = {
   options: FilterOption[]
   label?: string
   placeholder?: string
+  allLabel?: string
 } & (M extends "single"
-  ? { value: string; onChange: (value: string) => void }
+  ? { value: string | undefined; onChange: (value: string | undefined) => void }
   : { value: string[]; onChange: (value: string[]) => void })
 
 export function DataTableStatusFilter<M extends "single" | "multi">({
@@ -38,6 +31,7 @@ export function DataTableStatusFilter<M extends "single" | "multi">({
   options,
   label,
   placeholder = "All",
+  allLabel = "All",
   value,
   onChange,
 }: DataTableStatusFilterProps<M>) {
@@ -45,29 +39,60 @@ export function DataTableStatusFilter<M extends "single" | "multi">({
   const column = table.getColumn(columnId)
 
   if (mode === "single") {
-    const singleValue = value as string
-    const singleOnChange = onChange as (v: string) => void
+    const singleValue = value as string | undefined
+    const singleOnChange = onChange as (v: string | undefined) => void
 
-    const handleChange = (next: string) => {
-      singleOnChange(next)
-      column?.setFilterValue(next || undefined)
+    const clear = () => {
+      singleOnChange(undefined)
+      column?.setFilterValue(undefined)
     }
 
+    const select = (next: string) => {
+      singleOnChange(next)
+      column?.setFilterValue(next)
+    }
+
+    const activeLabel = options.find((o) => o.value === singleValue)?.label
+
     return (
-      <Select value={singleValue} onValueChange={handleChange}>
-        <SelectTrigger aria-label={label} className="w-full sm:w-40">
-          <SelectValue placeholder={placeholder} />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
+      <div className="flex items-center gap-1">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="h-8 w-full sm:w-auto" aria-label={label}>
+              {label && <span className="text-muted-foreground">{label}:</span>}
+              <span className="ml-1">{activeLabel ?? placeholder}</span>
+              <ChevronDown className="ml-1 size-3.5 opacity-50" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-48">
+            <DropdownMenuCheckboxItem checked={singleValue === undefined} onCheckedChange={clear}>
+              {allLabel}
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuSeparator />
             {options.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
+              <DropdownMenuCheckboxItem
+                key={opt.value}
+                checked={singleValue === opt.value}
+                onCheckedChange={() => select(opt.value)}
+              >
                 {opt.label}
-              </SelectItem>
+              </DropdownMenuCheckboxItem>
             ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+            {singleValue !== undefined && (
+              <>
+                <DropdownMenuSeparator />
+                <DropdownMenuCheckboxItem
+                  checked={false}
+                  onCheckedChange={clear}
+                  className="text-muted-foreground"
+                >
+                  Clear filter
+                </DropdownMenuCheckboxItem>
+              </>
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     )
   }
 
