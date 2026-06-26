@@ -24,15 +24,20 @@ export default function CopyButtonPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>
-        <ComponentPreview code={basicCode}>
+        <ComponentPreview code={basicCode} fileName="copy-button-basic.tsx">
           <CopyButton value="pnpm add @sharull9/registry" />
         </ComponentPreview>
       </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Icon only</h2>
-        <ComponentPreview code={iconOnlyCode}>
-          <CopyButton value="pnpm add @sharull9/registry" showLabel={false} variant="outline" size="icon" />
+        <ComponentPreview code={iconOnlyCode} fileName="copy-button-icon.tsx">
+          <CopyButton
+            value="pnpm add @sharull9/registry"
+            showLabel={false}
+            variant="outline"
+            size="icon"
+          />
         </ComponentPreview>
       </section>
 
@@ -41,9 +46,9 @@ export default function CopyButtonPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b text-left">
-              <th className="pb-2 pr-4 font-medium">Prop</th>
-              <th className="pb-2 pr-4 font-medium">Type</th>
-              <th className="pb-2 pr-4 font-medium">Default</th>
+              <th className="pr-4 pb-2 font-medium">Prop</th>
+              <th className="pr-4 pb-2 font-medium">Type</th>
+              <th className="pr-4 pb-2 font-medium">Default</th>
               <th className="pb-2 font-medium">Description</th>
             </tr>
           </thead>

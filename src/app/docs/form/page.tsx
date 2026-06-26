@@ -142,7 +142,7 @@ export default function FormPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Login form</h2>
-        <ComponentPreview code={code}>
+        <ComponentPreview code={code} fileName="login-form.tsx">
           <LoginForm />
         </ComponentPreview>
       </section>

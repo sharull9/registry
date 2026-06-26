@@ -108,7 +108,7 @@ export default function SearchBarPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>
-        <ComponentPreview code={code}>
+        <ComponentPreview code={code} fileName="search-bar-icon.tsx">
           <LiveExample />
         </ComponentPreview>
       </section>

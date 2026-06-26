@@ -1,29 +1,41 @@
 "use client"
 
-import CopyButton from "@/components/copy-button"
+import {
+  CodeBlock,
+  CodeBlockActions,
+  CodeBlockCopyButton,
+  CodeBlockFilename,
+  CodeBlockHeader,
+  CodeBlockTitle,
+} from "@/components/ai-elements/code-block"
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { cn } from "@/lib/utils"
+import { FileIcon } from "lucide-react"
 
 type ComponentPreviewProps = {
   code: string
   className?: string
+  fileName: string
   children: React.ReactNode
 }
 
-export function ComponentPreview({ code, className, children }: ComponentPreviewProps) {
+export function ComponentPreview({ code, fileName, className, children }: ComponentPreviewProps) {
+  const { copy } = useCopyToClipboard()
   return (
     <div className={cn("overflow-hidden rounded-lg border", className)}>
       <div className="flex min-h-40 items-center justify-center p-8">{children}</div>
-      <div className="relative border-t bg-muted/50">
-        <CopyButton
-          value={code}
-          showLabel={false}
-          variant="ghost"
-          size="icon"
-          className="absolute top-3 right-3 h-7 w-7"
-        />
-        <pre className="overflow-x-auto p-4 pr-12 font-mono text-sm">
-          <code>{code}</code>
-        </pre>
+      <div className="dark">
+        <CodeBlock code={code} language="tsx">
+          <CodeBlockHeader>
+            <CodeBlockTitle>
+              <FileIcon size={14} />
+              <CodeBlockFilename>{fileName}</CodeBlockFilename>
+            </CodeBlockTitle>
+            <CodeBlockActions>
+              <CodeBlockCopyButton onCopy={() => copy(code)} />
+            </CodeBlockActions>
+          </CodeBlockHeader>
+        </CodeBlock>
       </div>
     </div>
   )

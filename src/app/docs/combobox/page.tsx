@@ -198,14 +198,14 @@ export default function ComboboxPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>
-        <ComponentPreview code={basicCode}>
+        <ComponentPreview code={basicCode} fileName="combobox-basic.tsx">
           <BasicExample />
         </ComponentPreview>
       </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">With &quot;All&quot; option</h2>
-        <ComponentPreview code={withAllCode}>
+        <ComponentPreview code={withAllCode} fileName="combobox-with-all.tsx">
           <WithAllExample />
         </ComponentPreview>
       </section>
@@ -217,7 +217,7 @@ export default function ComboboxPage() {
           popover stays open for batch picking. A clear (✕) button appears in the trigger when items
           are selected. Use <code>maxChips</code> to cap visible badges (e.g. this demo shows 2).
         </p>
-        <ComponentPreview code={multiCode}>
+        <ComponentPreview code={multiCode} fileName="combobox-multiselect.tsx">
           <MultiExample />
         </ComponentPreview>
       </section>
@@ -229,7 +229,7 @@ export default function ComboboxPage() {
           callback by 300 ms and sets <code>shouldFilter=false</code> on the underlying Command.
           Update <code>options</code> and <code>isPending</code> from your data-fetching layer.
         </p>
-        <ComponentPreview code={asyncCode}>
+        <ComponentPreview code={asyncCode} fileName="combobox-async.tsx">
           <AsyncExample />
         </ComponentPreview>
       </section>
