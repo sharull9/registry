@@ -1,6 +1,7 @@
 "use client"
 
 import { ComponentPreview } from "@/components/docs/component-preview"
+import { InstallCommand } from "@/components/docs/install-command"
 import {
   Form,
   FormControl,
@@ -139,6 +140,11 @@ export default function FormPage() {
           React Hook Form wrapper with accessible labels, descriptions, and inline error messages.
         </p>
       </div>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-medium">Installation</h2>
+        <InstallCommand componentName="form" />
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Login form</h2>

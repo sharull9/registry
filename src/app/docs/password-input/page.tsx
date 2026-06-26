@@ -1,6 +1,7 @@
 "use client"
 
 import { ComponentPreview } from "@/components/docs/component-preview"
+import { InstallCommand } from "@/components/docs/install-command"
 import { PasswordInput } from "@/components/password-input"
 import { useState } from "react"
 
@@ -35,6 +36,11 @@ export default function PasswordInputPage() {
           A password field with a toggle button to reveal or hide the value.
         </p>
       </div>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-medium">Installation</h2>
+        <InstallCommand componentName="password-input" />
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>

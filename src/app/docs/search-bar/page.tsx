@@ -1,6 +1,7 @@
 "use client"
 
 import { ComponentPreview } from "@/components/docs/component-preview"
+import { InstallCommand } from "@/components/docs/install-command"
 import { SearchBar } from "@/components/search-bar"
 import { Button } from "@/components/ui/button"
 import { Kbd } from "@/components/ui/kbd"
@@ -105,6 +106,11 @@ export default function SearchBarPage() {
           A generic grouped search dialog. Pass any data type with accessor functions.
         </p>
       </div>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-medium">Installation</h2>
+        <InstallCommand componentName="search-bar" />
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>

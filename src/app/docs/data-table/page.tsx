@@ -15,6 +15,7 @@ import {
   useDataTableUrlState,
 } from "@/components/data-table"
 import { ComponentPreview } from "@/components/docs/component-preview"
+import { InstallCommand } from "@/components/docs/install-command"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -264,6 +265,11 @@ export default function DataTablePage() {
           over which features and row models you enable.
         </p>
       </div>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-medium">Installation</h2>
+        <InstallCommand componentName="data-table" />
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>

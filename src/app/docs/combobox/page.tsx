@@ -2,6 +2,7 @@
 
 import { Combobox, type ComboboxOption } from "@/components/combobox"
 import { ComponentPreview } from "@/components/docs/component-preview"
+import { InstallCommand } from "@/components/docs/install-command"
 import { useState } from "react"
 
 const frameworks: ComboboxOption[] = [
@@ -195,6 +196,11 @@ export default function ComboboxPage() {
           loading and error states, and async (API-driven) search.
         </p>
       </div>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-medium">Installation</h2>
+        <InstallCommand componentName="combobox" />
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>

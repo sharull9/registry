@@ -142,6 +142,26 @@
       ]
     },
     {
+      "name": "copy-button",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["ui"],
+      "files": [
+        {
+          "path": "src/components/copy-button.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/copy-button.tsx",
+          "registryDependencies": ["button"],
+          "dependencies": ["@tanstack/react-hotkeys"]
+        },
+        {
+          "path": "src/hooks/use-copy-to-clipboard.tsx",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-copy-to-clipboard.tsx"
+        }
+      ]
+    },
+    {
       "name": "search-bar",
       "type": "registry:component",
       "category": "component",

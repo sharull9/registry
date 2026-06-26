@@ -1,5 +1,6 @@
 import CopyButton from "@/components/copy-button"
 import { ComponentPreview } from "@/components/docs/component-preview"
+import { InstallCommand } from "@/components/docs/install-command"
 
 const basicCode = `import CopyButton from "@/components/copy-button"
 
@@ -21,6 +22,11 @@ export default function CopyButtonPage() {
           Copies text to the clipboard with icon and tooltip feedback.
         </p>
       </div>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-medium">Installation</h2>
+        <InstallCommand componentName="copy-button" />
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-medium">Basic</h2>
