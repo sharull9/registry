@@ -41,6 +41,8 @@ const groups = [
 ]
 
 const code = `import { SearchBar } from "@/components/search-bar"
+import { Kbd } from "@/components/ui/kbd"
+import { formatForDisplay } from "@tanstack/react-hotkeys"
 
 type Item = { id: string; label: string; group: string }
 
@@ -59,9 +61,11 @@ export function Example() {
       getItemKeywords={(item, group) => [group.label]}
       isActive={(item) => item.id === active}
       onSelect={(item) => setActive(item.id)}
+      hotkey="Mod+K"
     >
       <Button variant="outline">
         <SearchIcon className="size-4" />
+        <Kbd>{formatForDisplay("Mod+K")}</Kbd>
         Search components...
       </Button>
     </SearchBar>
@@ -140,6 +144,7 @@ export default function SearchBarPage() {
               ],
               ["isActive", "(item: T) => boolean", "Highlights the item when true"],
               ["onSelect", "(item: T) => void", "Called when an item is clicked"],
+              ["hotkey", "RegisterableHotkey", 'Keyboard shortcut to open the dialog (default: "Mod+K")'],
               ["children", "ReactNode", "The trigger element that opens the dialog"],
             ].map(([prop, type, desc]) => (
               <tr key={prop} className="border-b last:border-0">
