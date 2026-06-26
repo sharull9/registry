@@ -8,7 +8,7 @@ and update your row when done.
 
 | Plan | Title                                          | Priority | Effort | Depends on | Status |
 |------|------------------------------------------------|----------|--------|------------|--------|
-| 001  | Combobox: multi-select, clear, async search    | P1       | M      | —          | TODO   |
+| 001  | Combobox: multi-select, clear, async search    | P1       | M      | —          | DONE   |
 
 ## Dependency notes
 
