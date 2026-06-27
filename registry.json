@@ -177,6 +177,343 @@
       ]
     },
     {
+      "name": "better-auth-ui",
+      "type": "registry:item",
+      "category": "component",
+      "tags": ["auth", "settings", "user", "profile", "security", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "sharull9/registry/settings-user",
+        "sharull9/registry/settings-org",
+        "sharull9/registry/organization-switcher",
+        "sharull9/registry/multi-session-switcher",
+        "sharull9/registry/organization-selection",
+        "sharull9/registry/magic-link-form",
+        "sharull9/registry/passkeys-card",
+        "sharull9/registry/api-keys-card"
+      ]
+    },
+    {
+      "name": "settings-user",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "settings", "user", "profile", "security", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "separator",
+        "skeleton",
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/components/settings/settings-user.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/settings-user.tsx"
+        },
+        {
+          "path": "src/components/settings/account-tab.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/account-tab.tsx"
+        },
+        {
+          "path": "src/components/settings/security-tab.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/security-tab.tsx"
+        },
+        {
+          "path": "src/components/settings/profile-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/profile-card.tsx"
+        },
+        {
+          "path": "src/components/settings/change-email-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/change-email-card.tsx"
+        },
+        {
+          "path": "src/components/settings/change-password-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/change-password-card.tsx"
+        },
+        {
+          "path": "src/components/settings/sessions-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/sessions-card.tsx"
+        },
+        {
+          "path": "src/components/settings/linked-accounts-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/linked-accounts-card.tsx"
+        },
+        {
+          "path": "src/components/settings/passkeys-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/passkeys-card.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "settings-org",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "settings", "organization", "members", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "select",
+        "separator",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/settings/settings-org.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/settings-org.tsx"
+        },
+        {
+          "path": "src/components/settings/organization-profile-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/organization-profile-card.tsx"
+        },
+        {
+          "path": "src/components/settings/organization-members-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/organization-members-card.tsx"
+        },
+        {
+          "path": "src/components/settings/organization-danger-zone-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/organization-danger-zone-card.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "organization-switcher",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "organization", "switcher", "dropdown", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "dropdown-menu",
+        "dialog",
+        "input",
+        "label",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/auth/organization-switcher.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/organization-switcher.tsx"
+        },
+        {
+          "path": "src/components/auth/create-organization-dialog.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/create-organization-dialog.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "multi-session-switcher",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "multi-session", "switcher", "account", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": ["avatar", "button", "dropdown-menu", "skeleton"],
+      "files": [
+        {
+          "path": "src/components/auth/multi-session-switcher.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/multi-session-switcher.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "organization-selection",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "organization", "onboarding", "screen", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "separator",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/auth/organization-selection.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/organization-selection.tsx"
+        },
+        {
+          "path": "src/components/auth/create-organization-dialog.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/create-organization-dialog.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "magic-link-form",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "magic-link", "passwordless", "login", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": ["button", "card", "input", "label", "spinner"],
+      "files": [
+        {
+          "path": "src/components/auth/magic-link-form.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/magic-link-form.tsx"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "passkeys-card",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "passkey", "webauthn", "security", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "separator",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/settings/passkeys-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/passkeys-card.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "api-keys-card",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "api-key", "security", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "separator",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/settings/api-keys-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/api-keys-card.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/hooks/use-copy-to-clipboard.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-copy-to-clipboard.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
       "name": "password-input",
       "type": "registry:component",
       "category": "component",
@@ -231,6 +568,11 @@
           "path": "src/components/combobox.tsx",
           "type": "registry:file",
           "target": "~/src/components/combobox.tsx"
+        },
+        {
+          "path": "src/hooks/use-debounce.tsx",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-debounce.tsx"
         }
       ]
     },
