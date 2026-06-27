@@ -21,7 +21,7 @@ const nav: NavItem[] = [
       { label: "Magic Link Form", href: "/docs/auth/magic-link-form" },
       { label: "Org Switcher", href: "/docs/auth/organization-switcher" },
       { label: "Org Selection", href: "/docs/auth/organization-selection" },
-      { label: "Create Org Dialog", href: "/docs/auth/create-organization-dialog" },
+      { label: "Create Org Form", href: "/docs/auth/create-org-form" },
       { label: "Multi Session", href: "/docs/auth/multi-session-switcher" },
     ],
   },

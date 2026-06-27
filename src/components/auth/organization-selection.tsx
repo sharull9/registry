@@ -1,8 +1,15 @@
 "use client"
 
-import { CreateOrganizationDialog } from "@/components/auth/create-organization-dialog"
+import { CreateOrgForm } from "@/components/auth/create-org-form"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useAuthList } from "@/hooks/use-auth-list"
@@ -110,14 +117,22 @@ export function OrganizationSelection({ className, onSelected }: OrganizationSel
         </CardContent>
       </Card>
 
-      <CreateOrganizationDialog
-        open={createOpen}
-        onOpenChange={setCreateOpen}
-        onCreated={async (id) => {
-          await refetch()
-          await select(id)
-        }}
-      />
+      <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Create organization</DialogTitle>
+            <DialogDescription>Organizations let you collaborate with your team.</DialogDescription>
+          </DialogHeader>
+          <CreateOrgForm
+            onCreated={async (id) => {
+              setCreateOpen(false)
+              await refetch()
+              await select(id)
+            }}
+            onCancel={() => setCreateOpen(false)}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

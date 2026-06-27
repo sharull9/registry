@@ -181,9 +181,9 @@
           "target": "~/src/components/auth/organization-switcher.tsx"
         },
         {
-          "path": "../../src/components/auth/create-organization-dialog.tsx",
+          "path": "../../src/components/auth/create-org-form.tsx",
           "type": "registry:file",
-          "target": "~/src/components/auth/create-organization-dialog.tsx"
+          "target": "~/src/components/auth/create-org-form.tsx"
         },
         {
           "path": "../../src/hooks/use-auth-list.ts",
@@ -270,9 +270,9 @@
           "target": "~/src/components/auth/organization-selection.tsx"
         },
         {
-          "path": "../../src/components/auth/create-organization-dialog.tsx",
+          "path": "../../src/components/auth/create-org-form.tsx",
           "type": "registry:file",
-          "target": "~/src/components/auth/create-organization-dialog.tsx"
+          "target": "~/src/components/auth/create-org-form.tsx"
         },
         {
           "path": "../../src/hooks/use-auth-list.ts",

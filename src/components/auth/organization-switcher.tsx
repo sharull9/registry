@@ -1,8 +1,15 @@
 "use client"
 
-import { CreateOrganizationDialog } from "@/components/auth/create-organization-dialog"
+import { CreateOrgForm } from "@/components/auth/create-org-form"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -127,14 +134,22 @@ export function OrganizationSwitcher({
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <CreateOrganizationDialog
-        open={createOpen}
-        onOpenChange={setCreateOpen}
-        onCreated={async (id) => {
-          await refetch()
-          await setActive(id)
-        }}
-      />
+      <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Create organization</DialogTitle>
+            <DialogDescription>Organizations let you collaborate with your team.</DialogDescription>
+          </DialogHeader>
+          <CreateOrgForm
+            onCreated={async (id) => {
+              setCreateOpen(false)
+              await refetch()
+              await setActive(id)
+            }}
+            onCancel={() => setCreateOpen(false)}
+          />
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

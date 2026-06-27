@@ -25,7 +25,7 @@ export function ComponentPreview({ code, fileName, className, children }: Compon
     <div className={cn("overflow-hidden rounded-lg border", className)}>
       <div className="flex min-h-40 items-center justify-center p-8">{children}</div>
       <div className="dark">
-        <CodeBlock code={code} language="tsx">
+        <CodeBlock code={code} language="tsx" showLineNumbers>
           <CodeBlockHeader>
             <CodeBlockTitle>
               <FileIcon size={14} />
