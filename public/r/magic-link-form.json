@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magic-link-form",
+  "dependencies": [
+    "better-auth",
+    "@better-auth/passkey",
+    "@better-auth/api-key"
+  ],
+  "registryDependencies": [
+    "button",
+    "card",
+    "input",
+    "label",
+    "spinner"
+  ],
+  "files": [
+    {
+      "path": "src/components/auth/magic-link-form.tsx",
+      "content": "\"use client\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { Card, CardContent, CardDescription, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Input } from \"@/components/ui/input\"\nimport { Label } from \"@/components/ui/label\"\nimport { Spinner } from \"@/components/ui/spinner\"\nimport { authClient } from \"@/lib/auth-client\"\nimport { cn } from \"@/lib/utils\"\nimport { MailCheck } from \"lucide-react\"\nimport { useRef, useState, useTransition } from \"react\"\n\nexport type MagicLinkFormProps = {\n  className?: string\n  /** Where the magic link redirects after a successful sign in. */\n  callbackURL?: string\n  /** Card title. */\n  title?: string\n}\n\n/**\n * Passwordless sign-in form. Emails the user a magic link and shows a\n * confirmation state once sent (Better Auth `magicLink` plugin).\n */\nexport function MagicLinkForm({\n  className,\n  callbackURL = \"/\",\n  title = \"Sign in\",\n}: MagicLinkFormProps) {\n  const [isPending, startTransition] = useTransition()\n  const [sent, setSent] = useState(false)\n  const [error, setError] = useState(\"\")\n  const emailRef = useRef<HTMLInputElement>(null)\n\n  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {\n    e.preventDefault()\n    const email = emailRef.current?.value.trim()\n    if (!email) return\n    setError(\"\")\n    startTransition(async () => {\n      const { error } = await authClient.signIn.magicLink({\n        email,\n        callbackURL,\n      })\n      if (error) setError(error.message ?? \"Failed to send magic link\")\n      else setSent(true)\n    })\n  }\n\n  return (\n    <Card className={cn(\"w-full max-w-sm\", className)}>\n      {sent ? (\n        <CardContent className=\"flex flex-col items-center gap-3 py-8 text-center\">\n          <div className=\"flex size-12 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400\">\n            <MailCheck className=\"size-6\" />\n          </div>\n          <div>\n            <p className=\"font-medium\">Check your email</p>\n            <p className=\"text-sm text-muted-foreground\">We sent you a magic link to sign in.</p>\n          </div>\n          <Button variant=\"ghost\" size=\"sm\" onClick={() => setSent(false)}>\n            Use a different email\n          </Button>\n        </CardContent>\n      ) : (\n        <>\n          <CardHeader>\n            <CardTitle className=\"text-xl\">{title}</CardTitle>\n            <CardDescription>\n              Enter your email and we&apos;ll send you a sign-in link.\n            </CardDescription>\n          </CardHeader>\n          <CardContent>\n            <form onSubmit={handleSubmit} className=\"flex flex-col gap-4\">\n              <div className=\"flex flex-col gap-1.5\">\n                <Label htmlFor=\"magic-link-email\">Email</Label>\n                <Input\n                  id=\"magic-link-email\"\n                  ref={emailRef}\n                  type=\"email\"\n                  placeholder=\"you@example.com\"\n                  autoComplete=\"email\"\n                  disabled={isPending}\n                  required\n                />\n              </div>\n              {error && <p className=\"text-sm text-destructive\">{error}</p>}\n              <Button type=\"submit\" className=\"w-full\" disabled={isPending}>\n                {isPending && <Spinner />}\n                {isPending ? \"Sending…\" : \"Send magic link\"}\n              </Button>\n            </form>\n          </CardContent>\n        </>\n      )}\n    </Card>\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/components/auth/magic-link-form.tsx"
+    },
+    {
+      "path": "src/lib/auth-client.ts",
+      "content": "import { apiKeyClient } from \"@better-auth/api-key/client\"\nimport { passkeyClient } from \"@better-auth/passkey/client\"\nimport { magicLinkClient, multiSessionClient, organizationClient } from \"better-auth/client/plugins\"\nimport { createAuthClient } from \"better-auth/react\"\n\nexport const authClient = createAuthClient({\n  baseURL: process.env.NEXT_PUBLIC_APP_URL,\n  plugins: [\n    organizationClient(),\n    multiSessionClient(),\n    magicLinkClient(),\n    passkeyClient(),\n    apiKeyClient(),\n  ],\n})\n\nexport type Session = typeof authClient.$Infer.Session\n",
+      "type": "registry:file",
+      "target": "~/src/lib/auth-client.ts"
+    }
+  ],
+  "type": "registry:component"
+}

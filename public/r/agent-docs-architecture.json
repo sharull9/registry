@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-docs-architecture",
+  "files": [
+    {
+      "path": "docs/agents/architecture.md",
+      "content": "# Architecture and File Ownership\n\n## Feature-first structure\n\n- `src/modules/<feature>/` is the default home for feature code.\n- Each feature module owns its `schema/`, `hooks/`, `util.ts`, `ui/layouts/`, `ui/views/`, and `ui/components/`.\n- Keep feature-specific backend API code inside the same feature module under `src/modules/<feature>/api/`.\n\n## Shared layers\n\n- `src/app/` contains Next.js App Router entries.\n- `src/components/ui/` contains generated shadcn/ui primitives. Do not edit generated components directly.\n- `src/providers/` contains app-wide React providers used by the root layout.\n- `src/constants.ts` contains locale constants and shared app constants.\n\n## Imports\n\n- Use the `@/*` path alias for `./src/*`.\n",
+      "type": "registry:file",
+      "target": "~/docs/agents/architecture.md"
+    }
+  ],
+  "type": "registry:item"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "config",
+  "registryDependencies": [
+    "sharull9/registry/config-prettier",
+    "sharull9/registry/config-eslint"
+  ],
+  "type": "registry:item"
+}

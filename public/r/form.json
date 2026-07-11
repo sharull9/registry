@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form",
+  "dependencies": [
+    "@hookform/resolvers",
+    "zod",
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "label",
+    "field"
+  ],
+  "files": [
+    {
+      "path": "src/components/form.tsx",
+      "content": "import { Field, FieldDescription, FieldError, FieldLabel } from \"@/components/ui/field\"\nimport { cn } from \"@/lib/utils\"\nimport { Slot } from \"radix-ui\"\nimport * as React from \"react\"\nimport {\n  Controller,\n  FormProvider,\n  useFormContext,\n  useFormState,\n  type ControllerProps,\n  type FieldPath,\n  type FieldValues,\n} from \"react-hook-form\"\n\ntype FormFieldContextValue<\n  TFieldValues extends FieldValues = FieldValues,\n  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,\n> = {\n  name: TName\n}\n\nexport const FormFieldContext = React.createContext<FormFieldContextValue>(\n  {} as FormFieldContextValue\n)\n\ntype FormItemContextValue = {\n  id: string\n}\n\nexport const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue)\n\nexport const useFormField = () => {\n  const fieldContext = React.useContext(FormFieldContext)\n  const itemContext = React.useContext(FormItemContext)\n  const { getFieldState } = useFormContext()\n  const formState = useFormState({ name: fieldContext.name })\n  const fieldState = getFieldState(fieldContext.name, formState)\n\n  if (!fieldContext) {\n    throw new Error(\"useFormField should be used within <FormField>\")\n  }\n\n  const { id } = itemContext\n\n  return {\n    id,\n    name: fieldContext.name,\n    formItemId: `${id}-form-item`,\n    formDescriptionId: `${id}-form-item-description`,\n    formMessageId: `${id}-form-item-message`,\n    ...fieldState,\n  }\n}\n\nconst Form = FormProvider\n\nconst FormField = <\n  TFieldValues extends FieldValues = FieldValues,\n  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,\n>({\n  ...props\n}: ControllerProps<TFieldValues, TName>) => {\n  return (\n    <FormFieldContext.Provider value={{ name: props.name }}>\n      <Controller {...props} />\n    </FormFieldContext.Provider>\n  )\n}\n\nfunction FormItem({ className, ...props }: React.ComponentProps<\"div\">) {\n  const id = React.useId()\n\n  return (\n    <FormItemContext.Provider value={{ id }}>\n      <Field data-slot=\"form-item\" className={cn(\"grid gap-1\", className)} {...props} />\n    </FormItemContext.Provider>\n  )\n}\n\ntype FormLabelProps = React.ComponentProps<typeof FieldLabel> & {\n  isRequired?: boolean\n}\n\nfunction FormLabel({ className, isRequired = false, children, ...props }: FormLabelProps) {\n  const { error, formItemId } = useFormField()\n\n  return (\n    <FieldLabel\n      data-slot=\"form-label\"\n      data-error={!!error}\n      className={cn(\"data-[error=true]:text-destructive\", className)}\n      htmlFor={formItemId}\n      {...props}\n    >\n      {children} {isRequired ? <span className=\"text-destructive\">*</span> : \"\"}\n    </FieldLabel>\n  )\n}\n\nfunction FormControl({ ...props }: React.ComponentProps<typeof Slot.Root>) {\n  const { error, formItemId, formDescriptionId, formMessageId } = useFormField()\n\n  return (\n    <Slot.Root\n      data-slot=\"form-control\"\n      id={formItemId}\n      aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}\n      aria-invalid={!!error}\n      {...props}\n    />\n  )\n}\n\nfunction FormDescription({ className, ...props }: React.ComponentProps<\"p\">) {\n  const { formDescriptionId } = useFormField()\n\n  return (\n    <FieldDescription\n      data-slot=\"form-description\"\n      id={formDescriptionId}\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction FormErrorMessage({ className, ...props }: React.ComponentProps<\"p\">) {\n  const { error, formMessageId } = useFormField()\n  const body = error ? String(error?.message ?? \"\") : props.children\n\n  if (!body) return null\n\n  return (\n    <FieldError\n      data-slot=\"form-message\"\n      id={formMessageId}\n      className={cn(\"text-sm text-destructive\", className)}\n      {...props}\n    >\n      {body}\n    </FieldError>\n  )\n}\n\nexport { Form, FormControl, FormDescription, FormErrorMessage, FormField, FormItem, FormLabel }\n",
+      "type": "registry:file",
+      "target": "~/src/components/form.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

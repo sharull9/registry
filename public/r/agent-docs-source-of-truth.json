@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-docs-source-of-truth",
+  "files": [
+    {
+      "path": "docs/agents/source-of-truth.md",
+      "content": "# Source of Truth Rules\n\n## Prefer code over prose\n\n- If documentation conflicts with repository code or config, follow the code or config.\n- When updating AGENTS docs, only include instructions that are stable, task-relevant, and verifiable from the repo.\n\n## Canonical files\n\n- Use `package.json` for package manager and script behavior.\n- Use `src/app/layout.tsx` and `src/providers/` for provider order and app-wide provider behavior.\n- Use `src/constants.ts` for static stale value.\n- Use `components.json`, `src/styles/globals.css`, and `src/lib/utils.ts` for UI tooling and styling facts.\n\n## What not to document in AGENTS\n\n- Do not restate generated-tool metadata unless it affects implementation choices.\n- Do not keep descriptive claims that can drift from config, such as theme preset names, icon library names, or RTL flags, unless you point to the canonical file.\n- Do not keep commands in root AGENTS unless they are non-standard or materially useful across tasks.\n",
+      "type": "registry:file",
+      "target": "~/docs/agents/source-of-truth.md"
+    }
+  ],
+  "type": "registry:item"
+}

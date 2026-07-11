@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skills",
+  "files": [
+    {
+      "path": "skills/repo-explorer/SKILL.md",
+      "content": "---\nname: repo-explorer\ndescription: Clone and inspect external repositories in a reusable local exploration cache. Use this skill when the user asks to explore, inspect, investigate, compare or answer questions about a repository that may not already be in the current workspace.\nallowed-tools: Bash(mkdir -p ~/.explore/repos) Bash(ls -la ~/.explore/repos) Bash(git clone *)\n---\n\nUse this explore repositories without cluttering the active workspace\n\n## Repository Cache\n\nUse `~/.explore/repos` as the local cache directory for repositories being explored.\n\n## Current Cache Contents\n\n```!\nmkdir -p ~/.explore/repos\nls -la ~/.explore/repos\n```\n\n## Flow\n\n1. List the current repository cache contents before deciding what to use.\n   - In hosts that support skill shell injection, use the rendered `Current Cache Contents` section above.\n   - Otherwise, run `ls -la ~/.explore/repos` before deciding what to use.\n\n2. Check whether the target repository is already present in `~/.explore/repos`.\n   - Prefer a stable directory name based on the repository owner and name, such as `owner__repo`.\n   - If the repository is already present, use that local checkout for exploration also use `git pull` for the latest updates.\n\n3. If the repository is not present, clone it into ~/.explore/repos, then explore it there.\n   - Create `~/.explore/repos` first if it does not exist.\n   - Clone with a clear destination path, for example:\n\n```bash\nmkdir -p ~/.explore/repos\ngit clone <repo-url> ~/.explore/repos/<owner>__<repo>\n```\n\nAfter opening the repository, inspect its local instructions and project metadata before making assumptions. Prefer `rg`, `rg --files`, and targeted file reads for exploration.",
+      "type": "registry:file",
+      "target": "~/.agents/skills/repo-explorer/SKILL.md"
+    },
+    {
+      "path": "skills/repo-explorer/SKILL.md",
+      "content": "---\nname: repo-explorer\ndescription: Clone and inspect external repositories in a reusable local exploration cache. Use this skill when the user asks to explore, inspect, investigate, compare or answer questions about a repository that may not already be in the current workspace.\nallowed-tools: Bash(mkdir -p ~/.explore/repos) Bash(ls -la ~/.explore/repos) Bash(git clone *)\n---\n\nUse this explore repositories without cluttering the active workspace\n\n## Repository Cache\n\nUse `~/.explore/repos` as the local cache directory for repositories being explored.\n\n## Current Cache Contents\n\n```!\nmkdir -p ~/.explore/repos\nls -la ~/.explore/repos\n```\n\n## Flow\n\n1. List the current repository cache contents before deciding what to use.\n   - In hosts that support skill shell injection, use the rendered `Current Cache Contents` section above.\n   - Otherwise, run `ls -la ~/.explore/repos` before deciding what to use.\n\n2. Check whether the target repository is already present in `~/.explore/repos`.\n   - Prefer a stable directory name based on the repository owner and name, such as `owner__repo`.\n   - If the repository is already present, use that local checkout for exploration also use `git pull` for the latest updates.\n\n3. If the repository is not present, clone it into ~/.explore/repos, then explore it there.\n   - Create `~/.explore/repos` first if it does not exist.\n   - Clone with a clear destination path, for example:\n\n```bash\nmkdir -p ~/.explore/repos\ngit clone <repo-url> ~/.explore/repos/<owner>__<repo>\n```\n\nAfter opening the repository, inspect its local instructions and project metadata before making assumptions. Prefer `rg`, `rg --files`, and targeted file reads for exploration.",
+      "type": "registry:file",
+      "target": "~/.claude/skills/repo-explorer/SKILL.md"
+    }
+  ],
+  "type": "registry:item"
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-docs-api",
+  "files": [
+    {
+      "path": "docs/agents/api.md",
+      "content": "# Backend API Organization\n\n## oRPC routes\n\n- Keep feature API routers under `src/modules/<feature>/api/`.\n- Register feature routers through `src/orpc/index.ts`.\n- Use `publicProcedure` only for intentionally public reads or checks.\n- Use `protectedProcedure` for authenticated user actions.\n- Use `orgProcedure` for organization-scoped reads and mutations.\n- Use `superAdminProcedure` for platform administrator actions.\n\n## Authorization\n\n- Treat route handlers and oRPC procedures as public entrypoints.\n- Enforce authorization close to the database operation, not only in layouts or proxy.\n- Check `context.orgId` and ownership before reading or mutating organization-scoped records.\n- Return `ORPCError` codes for auth and not-found cases instead of leaking cross-organization existence.\n\n## Route handlers\n\n- Keep Next.js route handlers in `src/app/api/**/route.ts`.\n- Use route handlers for webhooks and framework/library integrations.\n- Use oRPC procedures for application data operations consumed by the UI.\n",
+      "type": "registry:file",
+      "target": "~/docs/agents/api.md"
+    }
+  ],
+  "type": "registry:item"
+}

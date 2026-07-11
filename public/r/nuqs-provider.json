@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "nuqs-provider",
+  "dependencies": [
+    "nuqs"
+  ],
+  "files": [
+    {
+      "path": "src/providers/nuqs.provider.tsx",
+      "content": "﻿import { NuqsAdapter } from 'nuqs/adapters/next/app'\nimport React from 'react'\n\nexport function NuqsProvider({ children }: React.PropsWithChildren) {\n\treturn <NuqsAdapter>{children}</NuqsAdapter>\n}\n",
+      "type": "registry:file",
+      "target": "~/src/providers/nuqs.provider.tsx"
+    }
+  ],
+  "type": "registry:item"
+}

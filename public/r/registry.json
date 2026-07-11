@@ -1,0 +1,915 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "registry",
+  "homepage": "https://sharull-registry.vercel.app",
+  "items": [
+    {
+      "name": "project-setup",
+      "type": "registry:item",
+      "registryDependencies": [
+        "sharull9/registry/agent-docs",
+        "sharull9/registry/providers",
+        "sharull9/registry/config",
+        "sharull9/registry/util"
+      ]
+    },
+    {
+      "name": "skills",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["skills", "ai", "bundle"],
+      "files": [
+        {
+          "path": "skills/repo-explorer/SKILL.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/repo-explorer/SKILL.md"
+        },
+        {
+          "path": "skills/repo-explorer/SKILL.md",
+          "type": "registry:file",
+          "target": "~/.claude/skills/repo-explorer/SKILL.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "ai", "bundle"],
+      "registryDependencies": [
+        "sharull9/registry/agent-md",
+        "sharull9/registry/agent-docs-api",
+        "sharull9/registry/agent-docs-architecture",
+        "sharull9/registry/agent-docs-forms-and-state",
+        "sharull9/registry/agent-docs-routing",
+        "sharull9/registry/agent-docs-source-of-truth"
+      ]
+    },
+    {
+      "name": "agent-md",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "ai", "markdown"],
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "type": "registry:file",
+          "target": "~/AGENTS.md"
+        },
+        {
+          "path": "CLAUDE.md",
+          "type": "registry:file",
+          "target": "~/CLAUDE.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-api",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "api"],
+      "files": [
+        {
+          "path": "docs/agents/api.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/api.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-architecture",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "architecture"],
+      "files": [
+        {
+          "path": "docs/agents/architecture.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/architecture.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-forms-and-state",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "forms", "state"],
+      "files": [
+        {
+          "path": "docs/agents/forms-and-state.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/forms-and-state.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-routing",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "routing"],
+      "files": [
+        {
+          "path": "docs/agents/routing.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/routing.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-source-of-truth",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "source-of-truth"],
+      "files": [
+        {
+          "path": "docs/agents/source-of-truth.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/source-of-truth.md"
+        }
+      ]
+    },
+    {
+      "name": "agent-docs-ui",
+      "type": "registry:item",
+      "category": "agent",
+      "tags": ["docs", "ui"],
+      "files": [
+        {
+          "path": "docs/agents/ui.md",
+          "type": "registry:file",
+          "target": "~/docs/agents/ui.md"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["ui"],
+      "registryDependencies": ["button"],
+      "dependencies": ["@tanstack/react-hotkeys"],
+      "files": [
+        {
+          "path": "src/components/copy-button.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/copy-button.tsx"
+        },
+        {
+          "path": "src/hooks/use-copy-to-clipboard.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-copy-to-clipboard.ts"
+        }
+      ]
+    },
+    {
+      "name": "search-bar",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["search", "form", "input", "ui"],
+      "registryDependencies": ["button", "dialog", "input", "scroll-area"],
+      "dependencies": ["@tanstack/react-hotkeys", "lucide-react"],
+      "files": [
+        {
+          "path": "src/components/search-bar.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/search-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "better-auth-ui",
+      "type": "registry:item",
+      "category": "component",
+      "tags": ["auth", "settings", "user", "profile", "security", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "sharull9/registry/settings-user",
+        "sharull9/registry/settings-org",
+        "sharull9/registry/organization-switcher",
+        "sharull9/registry/multi-session-switcher",
+        "sharull9/registry/organization-selection",
+        "sharull9/registry/magic-link-form",
+        "sharull9/registry/passkeys-card",
+        "sharull9/registry/api-keys-card"
+      ]
+    },
+    {
+      "name": "settings-user",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "settings", "user", "profile", "security", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "separator",
+        "skeleton",
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/components/settings/settings-user.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/settings-user.tsx"
+        },
+        {
+          "path": "src/components/settings/account-tab.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/account-tab.tsx"
+        },
+        {
+          "path": "src/components/settings/security-tab.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/security-tab.tsx"
+        },
+        {
+          "path": "src/components/settings/profile-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/profile-card.tsx"
+        },
+        {
+          "path": "src/components/settings/change-email-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/change-email-card.tsx"
+        },
+        {
+          "path": "src/components/settings/change-password-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/change-password-card.tsx"
+        },
+        {
+          "path": "src/components/settings/sessions-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/sessions-card.tsx"
+        },
+        {
+          "path": "src/components/settings/linked-accounts-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/linked-accounts-card.tsx"
+        },
+        {
+          "path": "src/components/settings/passkeys-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/passkeys-card.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "settings-org",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "settings", "organization", "members", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "select",
+        "separator",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/settings/settings-org.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/settings-org.tsx"
+        },
+        {
+          "path": "src/components/settings/organization-profile-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/organization-profile-card.tsx"
+        },
+        {
+          "path": "src/components/settings/organization-members-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/organization-members-card.tsx"
+        },
+        {
+          "path": "src/components/settings/organization-danger-zone-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/organization-danger-zone-card.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "organization-switcher",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "organization", "switcher", "dropdown", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "dropdown-menu",
+        "dialog",
+        "input",
+        "label",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/auth/organization-switcher.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/organization-switcher.tsx"
+        },
+        {
+          "path": "src/components/auth/create-org-form.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/create-org-form.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "multi-session-switcher",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "multi-session", "switcher", "account", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": ["avatar", "button", "dropdown-menu", "skeleton"],
+      "files": [
+        {
+          "path": "src/components/auth/multi-session-switcher.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/multi-session-switcher.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "organization-selection",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "organization", "onboarding", "screen", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "separator",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/auth/organization-selection.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/organization-selection.tsx"
+        },
+        {
+          "path": "src/components/auth/create-org-form.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/create-org-form.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "magic-link-form",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "magic-link", "passwordless", "login", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": ["button", "card", "input", "label", "spinner"],
+      "files": [
+        {
+          "path": "src/components/auth/magic-link-form.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/auth/magic-link-form.tsx"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "passkeys-card",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "passkey", "webauthn", "security", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "separator",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/settings/passkeys-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/passkeys-card.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "api-keys-card",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["auth", "api-key", "security", "ui"],
+      "dependencies": ["better-auth", "@better-auth/passkey", "@better-auth/api-key"],
+      "registryDependencies": [
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "separator",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "src/components/settings/api-keys-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/settings/api-keys-card.tsx"
+        },
+        {
+          "path": "src/hooks/use-auth-list.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-auth-list.ts"
+        },
+        {
+          "path": "src/hooks/use-copy-to-clipboard.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-copy-to-clipboard.ts"
+        },
+        {
+          "path": "src/lib/auth-client.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/auth-client.ts"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["input", "password", "form", "security", "ui"],
+      "registryDependencies": ["input-group"],
+      "dependencies": ["@radix-ui/react-use-controllable-state", "lucide-react"],
+      "files": [
+        {
+          "path": "src/components/password-input.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/password-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["form", "validation", "input", "ui"],
+      "registryDependencies": ["label", "field"],
+      "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"],
+      "files": [
+        {
+          "path": "src/components/form.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shader-lines",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["graphics", "animation", "shader", "ui"],
+      "files": [
+        {
+          "path": "src/components/shader-lines.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/shader-lines.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["select", "dropdown", "input", "ui"],
+      "registryDependencies": ["spinner", "popover", "empty", "command", "button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/combobox.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/combobox.tsx"
+        },
+        {
+          "path": "src/hooks/use-debounce.ts",
+          "type": "registry:file",
+          "target": "~/src/hooks/use-debounce.ts"
+        }
+      ]
+    },
+    {
+      "name": "page-loading-progress-bar",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["ui"],
+      "files": [
+        {
+          "path": "src/components/page-loading-progress-bar.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/page-loading-progress-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["table", "data", "list", "ui", "grid"],
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "dropdown-menu",
+        "empty",
+        "input-group",
+        "select",
+        "separator",
+        "skeleton",
+        "table"
+      ],
+      "dependencies": ["@tanstack/react-table", "lucide-react", "nuqs"],
+      "files": [
+        {
+          "path": "src/components/data-table/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/column-header.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/column-header.tsx"
+        },
+        {
+          "path": "src/components/data-table/row-action.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/row-action.tsx"
+        },
+        {
+          "path": "src/components/data-table/core/types.ts",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/core/types.ts"
+        },
+        {
+          "path": "src/components/data-table/core/context.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/core/context.tsx"
+        },
+        {
+          "path": "src/components/data-table/core/data-table.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/core/data-table.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/column-toggle/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/column-toggle/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/floating-toolbar/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/floating-toolbar/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/pagination/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/pagination/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/row-selection/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/row-selection/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/states/empty.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/states/empty.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/states/loading.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/states/loading.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/search.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/search.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/status-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/status-filter.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/export.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/export.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/density-toggle.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/density-toggle.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/date-range-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/date-range-filter.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/number-range-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/number-range-filter.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/faceted-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/faceted-filter.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/saved-views.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/saved-views.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/row-expansion/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/row-expansion/index.tsx"
+        },
+        {
+          "path": "src/components/data-table/hooks/use-data-table-url-state.ts",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/hooks/use-data-table-url-state.ts"
+        }
+      ]
+    },
+    {
+      "name": "config",
+      "type": "registry:item",
+      "category": "config",
+      "tags": ["bundle", "config"],
+      "registryDependencies": [
+        "sharull9/registry/config-prettier",
+        "sharull9/registry/config-eslint"
+      ]
+    },
+    {
+      "name": "config-prettier",
+      "type": "registry:item",
+      "category": "config",
+      "tags": ["prettier", "formatting", "config"],
+      "devDependencies": ["prettier", "prettier-plugin-tailwindcss"],
+      "files": [
+        {
+          "path": ".prettierrc",
+          "type": "registry:file",
+          "target": "~/.prettierrc"
+        },
+        {
+          "path": ".prettierignore",
+          "type": "registry:file",
+          "target": "~/.prettierignore"
+        }
+      ]
+    },
+    {
+      "name": "config-eslint",
+      "type": "registry:item",
+      "category": "config",
+      "tags": ["eslint", "linting", "config"],
+      "files": [
+        {
+          "path": "eslint.config.mjs",
+          "type": "registry:file",
+          "target": "~/eslint.config.mjs"
+        }
+      ]
+    },
+    {
+      "name": "util",
+      "type": "registry:item",
+      "category": "misc",
+      "tags": ["utils", "helpers", "tailwind"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "module-auth-example",
+      "type": "registry:item",
+      "category": "misc",
+      "tags": ["auth", "module", "example", "forms"],
+      "registryDependencies": [
+        "sharull9/registry/shader-lines",
+        "sharull9/registry/password-input",
+        "sharull9/registry/form",
+        "sharull9/registry/util",
+        "button",
+        "checkbox",
+        "input",
+        "label",
+        "spinner"
+      ],
+      "dependencies": ["@hookform/resolvers", "react-hook-form", "zod", "nuqs"],
+      "files": [
+        {
+          "path": "src/modules/auth/ui/components/auth-wrapper.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/components/auth-wrapper.tsx"
+        },
+        {
+          "path": "src/modules/auth/ui/layouts/auth-layout.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/layouts/auth-layout.tsx"
+        },
+        {
+          "path": "src/modules/auth/ui/views/sign-in-view.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/views/sign-in-view.tsx"
+        },
+        {
+          "path": "src/modules/auth/ui/views/sign-up-view.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/views/sign-up-view.tsx"
+        },
+        {
+          "path": "src/modules/auth/ui/views/verify-otp-view.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/views/verify-otp-view.tsx"
+        },
+        {
+          "path": "src/modules/auth/ui/views/forgot-password-view.tsx",
+          "type": "registry:file",
+          "target": "~/src/modules/auth/ui/views/forgot-password-view.tsx"
+        }
+      ]
+    },
+    {
+      "name": "providers",
+      "type": "registry:item",
+      "category": "provider",
+      "tags": ["bundle", "provider"],
+      "registryDependencies": [
+        "sharull9/registry/nuqs-provider",
+        "sharull9/registry/query-provider",
+        "sharull9/registry/theme-provider",
+        "sharull9/registry/ui-provider"
+      ],
+      "files": [
+        {
+          "path": "src/providers/index.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "nuqs-provider",
+      "type": "registry:item",
+      "category": "provider",
+      "tags": ["nuqs", "url-state", "provider"],
+      "dependencies": ["nuqs"],
+      "files": [
+        {
+          "path": "src/providers/nuqs.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/nuqs.provider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "query-provider",
+      "type": "registry:item",
+      "category": "provider",
+      "tags": ["react-query", "data-fetching", "provider"],
+      "dependencies": ["@tanstack/react-query", "sonner"],
+      "files": [
+        {
+          "path": "src/providers/query.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/query.provider.tsx"
+        },
+        {
+          "path": "src/lib/query.ts",
+          "type": "registry:file",
+          "target": "~/src/lib/query.ts"
+        }
+      ]
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:item",
+      "category": "provider",
+      "tags": ["theme", "dark-mode", "provider"],
+      "dependencies": ["@tanstack/react-hotkeys", "next-themes"],
+      "files": [
+        {
+          "path": "src/providers/theme.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/theme.provider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ui-provider",
+      "type": "registry:item",
+      "category": "provider",
+      "tags": ["ui", "direction", "tooltip", "provider"],
+      "dependencies": ["@tanstack/react-hotkeys", "next-themes"],
+      "registryDependencies": ["direction", "tooltip"],
+      "files": [
+        {
+          "path": "src/providers/ui.provider.tsx",
+          "type": "registry:file",
+          "target": "~/src/providers/ui.provider.tsx"
+        }
+      ]
+    }
+  ]
+}

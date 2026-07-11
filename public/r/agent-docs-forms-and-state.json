@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-docs-forms-and-state",
+  "files": [
+    {
+      "path": "docs/agents/forms-and-state.md",
+      "content": "# Forms and State\n\n## Forms\n\n- Forms use `react-hook-form`.\n- Put Zod schemas in `src/modules/<feature>/schema/`.\n\n## State\n\n- Use Zustand for client state.\n- Use `nuqs` for URL state.\n",
+      "type": "registry:file",
+      "target": "~/docs/agents/forms-and-state.md"
+    }
+  ],
+  "type": "registry:item"
+}

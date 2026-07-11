@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "better-auth-ui",
+  "dependencies": [
+    "better-auth",
+    "@better-auth/passkey",
+    "@better-auth/api-key"
+  ],
+  "registryDependencies": [
+    "sharull9/registry/settings-user",
+    "sharull9/registry/settings-org",
+    "sharull9/registry/organization-switcher",
+    "sharull9/registry/multi-session-switcher",
+    "sharull9/registry/organization-selection",
+    "sharull9/registry/magic-link-form",
+    "sharull9/registry/passkeys-card",
+    "sharull9/registry/api-keys-card"
+  ],
+  "type": "registry:item"
+}

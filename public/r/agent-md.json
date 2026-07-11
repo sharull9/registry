@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-md",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "content": "<!-- BEGIN:nextjs-agent-rules -->\n# This is NOT the Next.js you know\n\nThis version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.\n<!-- END:nextjs-agent-rules -->\n\nJob Listing Portal for Infoware built with Next.js 16 App Router, React 19, and feature-scoped modules.\n\n## Essentials\n\n- Package manager: `pnpm`\n- Main commands:\n  - `pnpm types:check` - TypeScript type check\n  - `pnpm types:generate` - Run Next.js type generation\n\n## Task Guides\n\n- [Source of Truth Rules](docs/agents/source-of-truth.md)\n- [Architecture and File Ownership](docs/agents/architecture.md)\n- [Routing Conventions](docs/agents/routing.md)\n- [UI and Styling](docs/agents/ui.md)\n- [Forms and State](docs/agents/forms-and-state.md)\n- [Backend API Organization](docs/agents/api.md)\n",
+      "type": "registry:file",
+      "target": "~/AGENTS.md"
+    },
+    {
+      "path": "CLAUDE.md",
+      "content": "@AGENTS.md\n",
+      "type": "registry:file",
+      "target": "~/CLAUDE.md"
+    }
+  ],
+  "type": "registry:item"
+}

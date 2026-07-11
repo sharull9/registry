@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ui-provider",
+  "dependencies": [
+    "@tanstack/react-hotkeys",
+    "next-themes"
+  ],
+  "registryDependencies": [
+    "direction",
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/providers/ui.provider.tsx",
+      "content": "﻿import { DirectionProvider } from \"@/components/ui/direction\"\nimport { TooltipProvider } from \"@/components/ui/tooltip\"\nimport React from \"react\"\n\nexport function UIProvider({ children }: React.PropsWithChildren) {\n  return (\n    <DirectionProvider dir=\"ltr\">\n      <TooltipProvider>{children}</TooltipProvider>\n    </DirectionProvider>\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/providers/ui.provider.tsx"
+    }
+  ],
+  "type": "registry:item"
+}

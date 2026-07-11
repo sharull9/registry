@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-docs",
+  "registryDependencies": [
+    "sharull9/registry/agent-md",
+    "sharull9/registry/agent-docs-api",
+    "sharull9/registry/agent-docs-architecture",
+    "sharull9/registry/agent-docs-forms-and-state",
+    "sharull9/registry/agent-docs-routing",
+    "sharull9/registry/agent-docs-source-of-truth"
+  ],
+  "type": "registry:item"
+}

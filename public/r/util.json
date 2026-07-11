@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "util",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "src/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\nexport function sleep(ms: number) {\n  return new Promise((resolve) => setTimeout(resolve, ms))\n}\n\nexport type RouteMatcher = (path: string) => boolean\n\nexport const createRouteMatcher = (routes: string[]): RouteMatcher => {\n  const regexRoutes = routes.map((route) => new RegExp(`^${route}$`))\n  return (path: string): boolean => regexRoutes.some((regex) => regex.test(path))\n}\n",
+      "type": "registry:file",
+      "target": "~/src/lib/utils.ts"
+    }
+  ],
+  "type": "registry:item"
+}

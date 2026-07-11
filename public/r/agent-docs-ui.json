@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-docs-ui",
+  "files": [
+    {
+      "path": "docs/agents/ui.md",
+      "content": "# UI and Styling\n\n## Styling stack\n\n- Tailwind CSS v4 is configured through PostCSS.\n- Global styles and CSS variables live in `src/app/globals.css`.\n\n## Component system\n\n- The project uses shadcn/ui for shared UI primitives.\n- `components.json` is the source of truth for shadcn configuration.\n- Add components with `npx shadcn@latest add <component>`.\n\n## Utilities\n\n- Use `cn()` from `src/lib/utils.ts` for class merging.\n- Prettier is configured to sort Tailwind classes in supported helper calls.\n\n## Verify from config when needed\n\n- Check `components.json` for current shadcn settings such as style preset, icon library, CSS file path, aliases, and registry configuration.\n- Do not rely on prose descriptions of shadcn preset details if `components.json` says otherwise.\n",
+      "type": "registry:file",
+      "target": "~/docs/agents/ui.md"
+    }
+  ],
+  "type": "registry:item"
+}

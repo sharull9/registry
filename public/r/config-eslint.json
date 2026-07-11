@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "config-eslint",
+  "files": [
+    {
+      "path": "eslint.config.mjs",
+      "content": "import nextVitals from \"eslint-config-next/core-web-vitals\"\nimport nextTs from \"eslint-config-next/typescript\"\nimport { defineConfig, globalIgnores } from \"eslint/config\"\n\nconst eslintConfig = defineConfig([\n  ...nextVitals,\n  ...nextTs,\n  // Override default ignores of eslint-config-next.\n  globalIgnores([\n    // Default ignores of eslint-config-next:\n    \".next/**\",\n    \"out/**\",\n    \"build/**\",\n    \"next-env.d.ts\",\n  ]),\n  {\n    rules: {\n      \"@typescript-eslint/ban-ts-comment\": \"off\",\n      \"@typescript-eslint/no-explicit-any\": \"off\",\n      \"@typescript-eslint/no-empty-object-type\": \"off\",\n      \"@next/next/no-img-element\": \"off\",\n    },\n  },\n])\n\nexport default eslintConfig\n",
+      "type": "registry:file",
+      "target": "~/eslint.config.mjs"
+    }
+  ],
+  "type": "registry:item"
+}

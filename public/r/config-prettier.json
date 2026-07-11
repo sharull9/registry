@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "config-prettier",
+  "devDependencies": [
+    "prettier",
+    "prettier-plugin-tailwindcss"
+  ],
+  "files": [
+    {
+      "path": ".prettierrc",
+      "content": "{\n  \"endOfLine\": \"lf\",\n  \"semi\": false,\n  \"singleQuote\": false,\n  \"tabWidth\": 2,\n  \"trailingComma\": \"es5\",\n  \"printWidth\": 100,\n  \"plugins\": [\"prettier-plugin-tailwindcss\"],\n  \"tailwindStylesheet\": \"src/app/globals.css\",\n  \"tailwindFunctions\": [\"cn\", \"cva\", \"clsx\"]\n}\n",
+      "type": "registry:file",
+      "target": "~/.prettierrc"
+    },
+    {
+      "path": ".prettierignore",
+      "content": "dist/\nnode_modules/\n.next/\n.turbo/\ncoverage/\npnpm-lock.yaml\n.pnpm-store/",
+      "type": "registry:file",
+      "target": "~/.prettierignore"
+    }
+  ],
+  "type": "registry:item"
+}

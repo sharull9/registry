@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button",
+  "dependencies": [
+    "@tanstack/react-hotkeys"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/components/copy-button.tsx",
+      "content": "\"use client\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { useCopyToClipboard } from \"@/hooks/use-copy-to-clipboard\"\nimport { CheckIcon, CopyIcon } from \"lucide-react\"\nimport React from \"react\"\n\ntype CopyButtonProps = React.ComponentProps<typeof Button> & {\n  value: string\n  copiedTooltip?: string\n  copyTooltip?: string\n  showLabel?: boolean\n}\n\nexport default function CopyButton({\n  value,\n  copiedTooltip = \"Copied!\",\n  copyTooltip = \"Copy\",\n  showLabel = true,\n  ...props\n}: CopyButtonProps) {\n  const { copied, copy } = useCopyToClipboard()\n\n  const handleCopy = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {\n    e.stopPropagation()\n    await copy(value)\n    if (props.onClick) props.onClick(e)\n  }\n\n  return (\n    <Button\n      type=\"button\"\n      aria-label={copied ? copiedTooltip : copyTooltip}\n      title={copied ? copiedTooltip : copyTooltip}\n      onClick={handleCopy}\n      tooltip={copied ? copiedTooltip : copyTooltip}\n      {...props}\n    >\n      {copied ? <CheckIcon /> : <CopyIcon />}\n      {showLabel ? (copied ? copiedTooltip : copyTooltip) : null}\n    </Button>\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/components/copy-button.tsx"
+    },
+    {
+      "path": "src/hooks/use-copy-to-clipboard.ts",
+      "content": "\"use client\"\n\nimport { useCallback, useRef, useState } from \"react\"\n\ntype Options = {\n  resetDelay?: number\n}\n\nexport function useCopyToClipboard({ resetDelay = 1500 }: Options = {}) {\n  const [copied, setCopied] = useState(false)\n  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)\n\n  const copy = useCallback(\n    async (value: string) => {\n      if (!navigator?.clipboard) {\n        setCopied(false)\n        return\n      }\n      try {\n        await navigator.clipboard.writeText(value)\n        setCopied(true)\n\n        if (timeoutRef.current) {\n          clearTimeout(timeoutRef.current)\n        }\n        timeoutRef.current = setTimeout(() => {\n          setCopied(false)\n          timeoutRef.current = null\n        }, resetDelay)\n      } catch {\n        setCopied(false)\n      }\n    },\n    [resetDelay]\n  )\n\n  // Optional: Clean up timeout if component unmounts\n  // But not strictly necessary for use in most hooks\n\n  return { copied, copy }\n}\n",
+      "type": "registry:file",
+      "target": "~/src/hooks/use-copy-to-clipboard.ts"
+    }
+  ],
+  "type": "registry:component"
+}

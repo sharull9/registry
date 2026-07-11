@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "providers",
+  "registryDependencies": [
+    "sharull9/registry/nuqs-provider",
+    "sharull9/registry/query-provider",
+    "sharull9/registry/theme-provider",
+    "sharull9/registry/ui-provider"
+  ],
+  "files": [
+    {
+      "path": "src/providers/index.tsx",
+      "content": "﻿import { Toaster } from \"@/components/ui/sonner\"\nimport { NuqsProvider } from \"@/providers/nuqs.provider\"\nimport { QueryProvider } from \"@/providers/query.provider\"\nimport { ThemeProvider } from \"@/providers/theme.provider\"\nimport { UIProvider } from \"@/providers/ui.provider\"\nimport { ReactQueryDevtools } from \"@tanstack/react-query-devtools\"\nimport React from \"react\"\n\nexport default function Providers({ children }: React.PropsWithChildren) {\n  return (\n    <ThemeProvider attribute=\"class\" defaultTheme=\"system\" enableSystem disableTransitionOnChange>\n      <NuqsProvider>\n        <QueryProvider>\n          <UIProvider>{children}</UIProvider>\n          <ReactQueryDevtools />\n          <Toaster richColors closeButton />\n        </QueryProvider>\n      </NuqsProvider>\n    </ThemeProvider>\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/providers/index.tsx"
+    }
+  ],
+  "type": "registry:item"
+}

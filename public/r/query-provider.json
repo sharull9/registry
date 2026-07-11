@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "query-provider",
+  "dependencies": [
+    "@tanstack/react-query",
+    "sonner"
+  ],
+  "files": [
+    {
+      "path": "src/providers/query.provider.tsx",
+      "content": "﻿\"use client\";\n\nimport { getQueryClient } from \"@/lib/query\";\nimport { QueryClientProvider } from \"@tanstack/react-query\";\nimport React from \"react\";\n\nexport function QueryProvider({ children }: React.PropsWithChildren) {\n  const queryClient = getQueryClient();\n  return (\n    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>\n  );\n}\n",
+      "type": "registry:file",
+      "target": "~/src/providers/query.provider.tsx"
+    },
+    {
+      "path": "src/lib/query.ts",
+      "content": "import {\n  environmentManager,\n  type FetchQueryOptions,\n  QueryCache,\n  QueryClient,\n} from \"@tanstack/react-query\";\nimport { toast } from \"sonner\";\n\nexport function makeQueryClient() {\n  return new QueryClient({\n    defaultOptions: {\n      queries: {\n        staleTime: 60 * 60 * 1000, // 1 hour\n        retry: 0,\n      },\n    },\n    queryCache: new QueryCache({\n      onError: (error, query) => {\n        toast.error(`Error: ${error.message}`, {\n          action: {\n            label: \"Retry\",\n            onClick: query.invalidate,\n          },\n        });\n      },\n    }),\n  });\n}\n\nlet browserQueryClient: QueryClient | undefined = undefined;\n\nexport function getQueryClient() {\n  if (environmentManager.isServer()) {\n    return makeQueryClient();\n  } else {\n    if (!browserQueryClient) browserQueryClient = makeQueryClient();\n    return browserQueryClient;\n  }\n}\n\nexport function prefetch<T>(\n  queryOptions: FetchQueryOptions<T, Error, T, string[]>,\n) {\n  const queryClient = getQueryClient();\n  void queryClient.prefetchQuery(queryOptions);\n}\n",
+      "type": "registry:file",
+      "target": "~/src/lib/query.ts"
+    }
+  ],
+  "type": "registry:item"
+}

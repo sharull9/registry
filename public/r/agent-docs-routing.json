@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-docs-routing",
+  "files": [
+    {
+      "path": "docs/agents/routing.md",
+      "content": "# Routing Conventions\n\n## App Router\n\n- This app uses Next.js 16 App Router.\n- Route groups include `(auth)` for login and registration pages and `(marketing)` for public pages.\n\n## Route files\n\n- Route `page.tsx` files should import the relevant feature view directly.\n- Render the imported feature view from a named page component.\n- Do not create extra `<feature>-page.tsx` wrapper files for routes.\n- Do not use route-level re-export syntax such as `export { default } from \"@/modules/<feature>/ui/<feature>-page\"`.\n",
+      "type": "registry:file",
+      "target": "~/docs/agents/routing.md"
+    }
+  ],
+  "type": "registry:item"
+}

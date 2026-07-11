@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-provider",
+  "dependencies": [
+    "@tanstack/react-hotkeys",
+    "next-themes"
+  ],
+  "files": [
+    {
+      "path": "src/providers/theme.provider.tsx",
+      "content": "﻿'use client'\n\nimport { useHotkey } from '@tanstack/react-hotkeys'\nimport { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes'\nimport * as React from 'react'\n\nfunction ThemeProvider({ children, ...props }: React.ComponentProps<typeof NextThemesProvider>) {\n\treturn (\n\t\t<NextThemesProvider attribute=\"class\" defaultTheme=\"system\" enableSystem disableTransitionOnChange {...props}>\n\t\t\t<ThemeHotkey />\n\t\t\t{children}\n\t\t</NextThemesProvider>\n\t)\n}\n\nfunction ThemeHotkey() {\n\tconst { resolvedTheme, setTheme } = useTheme()\n\tuseHotkey('D', () => {\n\t\tsetTheme(resolvedTheme === 'dark' ? 'light' : 'dark')\n\t})\n\n\treturn null\n}\n\nexport { ThemeProvider }\n",
+      "type": "registry:file",
+      "target": "~/src/providers/theme.provider.tsx"
+    }
+  ],
+  "type": "registry:item"
+}

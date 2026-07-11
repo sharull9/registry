@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "project-setup",
+  "registryDependencies": [
+    "sharull9/registry/agent-docs",
+    "sharull9/registry/providers",
+    "sharull9/registry/config",
+    "sharull9/registry/util"
+  ],
+  "type": "registry:item"
+}
