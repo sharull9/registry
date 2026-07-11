@@ -146,18 +146,18 @@
       "type": "registry:component",
       "category": "component",
       "tags": ["ui"],
+      "registryDependencies": ["button"],
+      "dependencies": ["@tanstack/react-hotkeys"],
       "files": [
         {
           "path": "src/components/copy-button.tsx",
           "type": "registry:file",
-          "target": "~/src/components/copy-button.tsx",
-          "registryDependencies": ["button"],
-          "dependencies": ["@tanstack/react-hotkeys"]
+          "target": "~/src/components/copy-button.tsx"
         },
         {
-          "path": "src/hooks/use-copy-to-clipboard.tsx",
+          "path": "src/hooks/use-copy-to-clipboard.ts",
           "type": "registry:file",
-          "target": "~/src/hooks/use-copy-to-clipboard.tsx"
+          "target": "~/src/hooks/use-copy-to-clipboard.ts"
         }
       ]
     },
@@ -166,13 +166,13 @@
       "type": "registry:component",
       "category": "component",
       "tags": ["search", "form", "input", "ui"],
+      "registryDependencies": ["button", "dialog", "input", "scroll-area"],
+      "dependencies": ["@tanstack/react-hotkeys", "lucide-react"],
       "files": [
         {
           "path": "src/components/search-bar.tsx",
           "type": "registry:file",
-          "target": "~/src/components/search-bar.tsx",
-          "registryDependencies": ["button", "dialog", "input", "scroll-area", "lucide-react"],
-          "dependencies": ["@tanstack/react-hotkeys"]
+          "target": "~/src/components/search-bar.tsx"
         }
       ]
     },
@@ -518,13 +518,13 @@
       "type": "registry:component",
       "category": "component",
       "tags": ["input", "password", "form", "security", "ui"],
+      "registryDependencies": ["input-group"],
+      "dependencies": ["@radix-ui/react-use-controllable-state", "lucide-react"],
       "files": [
         {
           "path": "src/components/password-input.tsx",
           "type": "registry:file",
-          "target": "~/src/components/password-input.tsx",
-          "registryDependencies": ["input-group"],
-          "dependencies": ["@radix-ui/react-use-controllable-state", "lucide-react"]
+          "target": "~/src/components/password-input.tsx"
         }
       ]
     },
@@ -533,13 +533,13 @@
       "type": "registry:component",
       "category": "component",
       "tags": ["form", "validation", "input", "ui"],
+      "registryDependencies": ["label", "field"],
+      "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"],
       "files": [
         {
           "path": "src/components/form.tsx",
           "type": "registry:file",
-          "target": "~/src/components/form.tsx",
-          "registryDependencies": ["label", "field"],
-          "dependencies": ["@hookform/resolvers", "zod", "react-hook-form"]
+          "target": "~/src/components/form.tsx"
         }
       ]
     },
@@ -570,9 +570,22 @@
           "target": "~/src/components/combobox.tsx"
         },
         {
-          "path": "src/hooks/use-debounce.tsx",
+          "path": "src/hooks/use-debounce.ts",
           "type": "registry:file",
-          "target": "~/src/hooks/use-debounce.tsx"
+          "target": "~/src/hooks/use-debounce.ts"
+        }
+      ]
+    },
+    {
+      "name": "page-loading-progress-bar",
+      "type": "registry:component",
+      "category": "component",
+      "tags": ["ui"],
+      "files": [
+        {
+          "path": "src/components/page-loading-progress-bar.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/page-loading-progress-bar.tsx"
         }
       ]
     },
@@ -623,11 +636,6 @@
           "path": "src/components/data-table/core/data-table.tsx",
           "type": "registry:file",
           "target": "~/src/components/data-table/core/data-table.tsx"
-        },
-        {
-          "path": "src/components/data-table/hooks/use-data-table.ts",
-          "type": "registry:file",
-          "target": "~/src/components/data-table/hooks/use-data-table.ts"
         },
         {
           "path": "src/components/data-table/features/column-toggle/index.tsx",
@@ -685,6 +693,26 @@
           "target": "~/src/components/data-table/features/toolbar/density-toggle.tsx"
         },
         {
+          "path": "src/components/data-table/features/toolbar/date-range-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/date-range-filter.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/number-range-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/number-range-filter.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/faceted-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/faceted-filter.tsx"
+        },
+        {
+          "path": "src/components/data-table/features/toolbar/saved-views.tsx",
+          "type": "registry:file",
+          "target": "~/src/components/data-table/features/toolbar/saved-views.tsx"
+        },
+        {
           "path": "src/components/data-table/features/row-expansion/index.tsx",
           "type": "registry:file",
           "target": "~/src/components/data-table/features/row-expansion/index.tsx"
@@ -711,12 +739,12 @@
       "type": "registry:item",
       "category": "config",
       "tags": ["prettier", "formatting", "config"],
+      "devDependencies": ["prettier", "prettier-plugin-tailwindcss"],
       "files": [
         {
           "path": ".prettierrc",
           "type": "registry:file",
-          "target": "~/.prettierrc",
-          "devDependencies": ["prettier", "prettier-plugin-tailwindcss"]
+          "target": "~/.prettierrc"
         },
         {
           "path": ".prettierignore",
@@ -743,12 +771,12 @@
       "type": "registry:item",
       "category": "misc",
       "tags": ["utils", "helpers", "tailwind"],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "src/lib/utils.ts",
           "type": "registry:file",
-          "target": "~/src/lib/utils.ts",
-          "dependencies": ["clsx", "tailwind-merge"]
+          "target": "~/src/lib/utils.ts"
         }
       ]
     },
@@ -757,13 +785,23 @@
       "type": "registry:item",
       "category": "misc",
       "tags": ["auth", "module", "example", "forms"],
-      "registryDependencies": ["sharull9/registry/shader-lines"],
+      "registryDependencies": [
+        "sharull9/registry/shader-lines",
+        "sharull9/registry/password-input",
+        "sharull9/registry/form",
+        "sharull9/registry/util",
+        "button",
+        "checkbox",
+        "input",
+        "label",
+        "spinner"
+      ],
+      "dependencies": ["@hookform/resolvers", "react-hook-form", "zod", "nuqs"],
       "files": [
         {
           "path": "src/modules/auth/ui/components/auth-wrapper.tsx",
           "type": "registry:file",
-          "target": "~/src/modules/auth/ui/components/auth-wrapper.tsx",
-          "registryDependencies": ["sharull9/registry/shader-lines"]
+          "target": "~/src/modules/auth/ui/components/auth-wrapper.tsx"
         },
         {
           "path": "src/modules/auth/ui/layouts/auth-layout.tsx",
@@ -773,60 +811,22 @@
         {
           "path": "src/modules/auth/ui/views/sign-in-view.tsx",
           "type": "registry:file",
-          "target": "~/src/modules/auth/ui/views/sign-in-view.tsx",
-          "registryDependencies": [
-            "sharull9/registry/password-input",
-            "sharull9/registry/form",
-            "sharull9/registry/util",
-            "button",
-            "checkbox",
-            "input",
-            "label",
-            "spinner"
-          ],
-          "dependencies": ["@hookform/resolvers", "react-hook-form", "zod"]
+          "target": "~/src/modules/auth/ui/views/sign-in-view.tsx"
         },
         {
           "path": "src/modules/auth/ui/views/sign-up-view.tsx",
           "type": "registry:file",
-          "target": "~/src/modules/auth/ui/views/sign-up-view.tsx",
-          "registryDependencies": [
-            "sharull9/registry/password-input",
-            "sharull9/registry/form",
-            "sharull9/registry/util",
-            "input",
-            "button",
-            "spinner"
-          ],
-          "dependencies": ["@hookform/resolvers", "react-hook-form", "zod"]
+          "target": "~/src/modules/auth/ui/views/sign-up-view.tsx"
         },
         {
           "path": "src/modules/auth/ui/views/verify-otp-view.tsx",
           "type": "registry:file",
-          "target": "~/src/modules/auth/ui/views/verify-otp-view.tsx",
-          "registryDependencies": [
-            "sharull9/registry/password-input",
-            "sharull9/registry/form",
-            "sharull9/registry/util",
-            "input",
-            "button",
-            "spinner"
-          ],
-          "dependencies": ["nuqs"]
+          "target": "~/src/modules/auth/ui/views/verify-otp-view.tsx"
         },
         {
           "path": "src/modules/auth/ui/views/forgot-password-view.tsx",
           "type": "registry:file",
-          "target": "~/src/modules/auth/ui/views/forgot-password-view.tsx",
-          "registryDependencies": [
-            "sharull9/registry/password-input",
-            "sharull9/registry/form",
-            "sharull9/registry/util",
-            "input",
-            "button",
-            "spinner"
-          ],
-          "dependencies": ["@hookform/resolvers", "react-hook-form", "zod", "nuqs"]
+          "target": "~/src/modules/auth/ui/views/forgot-password-view.tsx"
         }
       ]
     },
@@ -854,12 +854,12 @@
       "type": "registry:item",
       "category": "provider",
       "tags": ["nuqs", "url-state", "provider"],
+      "dependencies": ["nuqs"],
       "files": [
         {
           "path": "src/providers/nuqs.provider.tsx",
           "type": "registry:file",
-          "target": "~/src/providers/nuqs.provider.tsx",
-          "dependencies": ["nuqs"]
+          "target": "~/src/providers/nuqs.provider.tsx"
         }
       ]
     },
@@ -868,18 +868,17 @@
       "type": "registry:item",
       "category": "provider",
       "tags": ["react-query", "data-fetching", "provider"],
+      "dependencies": ["@tanstack/react-query", "sonner"],
       "files": [
         {
           "path": "src/providers/query.provider.tsx",
           "type": "registry:file",
-          "target": "~/src/providers/query.provider.tsx",
-          "dependencies": ["@tanstack/react-query"]
+          "target": "~/src/providers/query.provider.tsx"
         },
         {
           "path": "src/lib/query.ts",
           "type": "registry:file",
-          "target": "~/src/lib/query.ts",
-          "dependencies": ["@tanstack/react-query", "sonner"]
+          "target": "~/src/lib/query.ts"
         }
       ]
     },
@@ -888,12 +887,12 @@
       "type": "registry:item",
       "category": "provider",
       "tags": ["theme", "dark-mode", "provider"],
+      "dependencies": ["@tanstack/react-hotkeys", "next-themes"],
       "files": [
         {
           "path": "src/providers/theme.provider.tsx",
           "type": "registry:file",
-          "target": "~/src/providers/theme.provider.tsx",
-          "dependencies": ["@tanstack/react-hotkeys", "next-themes"]
+          "target": "~/src/providers/theme.provider.tsx"
         }
       ]
     },
@@ -902,13 +901,13 @@
       "type": "registry:item",
       "category": "provider",
       "tags": ["ui", "direction", "tooltip", "provider"],
+      "dependencies": ["@tanstack/react-hotkeys", "next-themes"],
+      "registryDependencies": ["direction", "tooltip"],
       "files": [
         {
           "path": "src/providers/ui.provider.tsx",
           "type": "registry:file",
-          "target": "~/src/providers/ui.provider.tsx",
-          "dependencies": ["@tanstack/react-hotkeys", "next-themes"],
-          "registryDependencies": ["direction", "tooltip"]
+          "target": "~/src/providers/ui.provider.tsx"
         }
       ]
     }
